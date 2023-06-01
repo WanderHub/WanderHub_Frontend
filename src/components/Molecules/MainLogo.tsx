@@ -1,6 +1,6 @@
-import Logo from "../../assets/logo.png";
-import LinkButton from "../Atoms/LinkButton";
-import Image from "../Atoms/Image";
+import Logo from "@assets/logo.png";
+import LinkButton from "@components/Atoms/LinkButton";
+import Image from "@components/Atoms/Image";
 
 const MainLogo = () => {
   return (

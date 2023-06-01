@@ -1,5 +1,5 @@
-import Footer from "../../Organism/Common/Footer";
-import Header from "../../Organism/Common/Header";
+import Footer from "@components/Organism/Common/Footer";
+import Header from "@components/Organism/Common/Header";
 
 const AccompanyPage = () => {
   return (

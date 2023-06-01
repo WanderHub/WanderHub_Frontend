@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
-import LinkButton from "../../Atoms/LinkButton";
-import Button from "../../Atoms/Button";
-import MainLogo from "../../Molecules/MainLogo";
+import LinkButton from "@components/Atoms/LinkButton";
+import Button from "@components/Atoms/Button";
+import MainLogo from "@components/Molecules/MainLogo";
 
 const LinkList = [
   {
