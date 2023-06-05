@@ -2,12 +2,12 @@ import React from 'react';
 import Button, { ButtonProps } from '@components/Atoms/Button';
 import TextInput, { TextInputProps } from '@components/Atoms/TextInput';
 
-interface SearchBoxProps {
+interface SearchProps {
   BoxClassNameProps?: string;
   buttonProps: ButtonProps;
   inputProps?: TextInputProps;
 }
-const SearchBox = ({ BoxClassNameProps, buttonProps, inputProps }: SearchBoxProps) => {
+const Search = ({ BoxClassNameProps, buttonProps, inputProps }: SearchProps) => {
   return (
     <div className={BoxClassNameProps ?? 'my-3 text-center'}>
       <TextInput {...inputProps} />
@@ -16,4 +16,4 @@ const SearchBox = ({ BoxClassNameProps, buttonProps, inputProps }: SearchBoxProp
   );
 };
 
-export default SearchBox;
+export default Search;
