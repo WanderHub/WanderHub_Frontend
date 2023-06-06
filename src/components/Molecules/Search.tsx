@@ -1,17 +1,29 @@
 import React from 'react';
-import Button, { ButtonProps } from '@components/Atoms/Button';
-import TextInput, { TextInputProps } from '@components/Atoms/TextInput';
+import Button from '@components/Atoms/Button';
+import TextInput from '@components/Atoms/TextInput';
+import useInput from '@/hooks/useInput';
 
 interface SearchProps {
   BoxClassNameProps?: string;
-  buttonProps: ButtonProps;
-  inputProps?: TextInputProps;
+  buttonProps: {
+    children: string;
+    classNameProps?: string;
+  };
+  inputProps: {
+    classNameProps?: string;
+    placeholder: string;
+  };
 }
 const Search = ({ BoxClassNameProps, buttonProps, inputProps }: SearchProps) => {
+  const [targetVal, onChangeTarget, resetValue] = useInput('');
+  const handleSearch = () => {
+    console.log('검색어:', targetVal);
+    resetValue();
+  };
   return (
     <div className={BoxClassNameProps ?? 'my-3 text-center'}>
-      <TextInput {...inputProps} />
-      <Button {...buttonProps}>{buttonProps?.children}</Button>
+      <TextInput {...inputProps} val={targetVal} changeEvent={onChangeTarget} />
+      <Button clickEvent={handleSearch}>{buttonProps?.children}</Button>
     </div>
   );
 };

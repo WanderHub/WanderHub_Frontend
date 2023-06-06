@@ -9,12 +9,12 @@ const DataHandleBox = () => {
     <section>
       <Search
         buttonProps={{
-          clickEvent: () => {
-            console.log(123);
-          },
           children: '검색',
         }}
-        inputProps={{ classNameProps: 'border-2 w-8/12 h-9 px-3 rounded-full' }}
+        inputProps={{
+          classNameProps: 'border-2 w-8/12 h-9 px-3 rounded-full',
+          placeholder: '함께 여행할 동행을 찾아보세요!',
+        }}
       />
       <div className="flex justify-around">
         <div className="w-[45%] max-h-[50vh]">
