@@ -4,9 +4,18 @@ interface ImageProps {
   alt: string;
   width?: number;
   height?: number;
+  classNameProps?: string;
 }
-const Image = ({ src, alt, width, height }: ImageProps) => {
-  return <img src={src} alt={alt} width={width ?? 50} height={height ?? 50} />;
+const Image = ({ src, alt, width, height, classNameProps }: ImageProps) => {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width={width ?? 50}
+      height={height ?? 50}
+      className={classNameProps ?? ''}
+    />
+  );
 };
 
 export default Image;
