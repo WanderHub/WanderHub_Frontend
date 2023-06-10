@@ -1,17 +1,38 @@
 import React, { ChangeEvent } from 'react';
 
 export interface TextInputProps {
-  classNameProps?: string;
   placeholder: string;
-  val: string;
-  changeEvent: (e: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  classNameProps?: string;
+  id?: string;
+  type:
+    | 'text'
+    | 'number'
+    | 'password'
+    | 'email'
+    | 'tel'
+    | 'url'
+    | 'date'
+    | 'time'
+    | 'checkbox'
+    | 'radio'
+    | 'file';
 }
-const TextInput = ({ classNameProps, placeholder, val, changeEvent }: TextInputProps) => (
+const TextInput = ({
+  placeholder,
+  value,
+  handleChange,
+  classNameProps,
+  id,
+  type,
+}: TextInputProps) => (
   <input
-    value={val}
+    value={value}
     placeholder={placeholder}
-    onChange={changeEvent}
-    type="text"
+    onChange={handleChange}
+    type={type}
+    id={id}
     className={classNameProps ?? 'border-2 w-8/12 h-9 px-3'}
   />
 );
