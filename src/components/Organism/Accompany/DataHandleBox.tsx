@@ -9,6 +9,10 @@ import { formatDate } from '@/utils/commonUtil';
 import { accompanyList } from '@/constant/DummyData';
 
 const DataHandleBox = () => {
+  const getDateFunc = (date: string) => {
+    console.log(date);
+  };
+
   return (
     <section>
       <Search
@@ -25,7 +29,7 @@ const DataHandleBox = () => {
           <SvgMap pathList={mapList} />
         </div>
         <div className="w-[45%] max-h-[50vh]">
-          <AtomCalendar />
+          <AtomCalendar getDateFunc={getDateFunc} />
         </div>
       </div>
       <div className="mt-[2rem] pt-[1rem] border-t-2 border-gray-300 ">
