@@ -1,44 +1,30 @@
 import React, { ChangeEvent } from 'react';
 
-export interface TextInputProps {
+export interface TextareaProps {
   placeholder: string;
   value: string;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   classNameProps?: string;
   id?: string;
-  type:
-    | 'text'
-    | 'number'
-    | 'password'
-    | 'email'
-    | 'tel'
-    | 'url'
-    | 'date'
-    | 'time'
-    | 'checkbox'
-    | 'radio'
-    | 'file';
-  compType?: string;
   isReadOnly: boolean;
+  compType?: string;
 }
-const TextInput = ({
+const Textarea = ({
   placeholder,
   value,
   handleChange,
   classNameProps,
   id,
-  type,
   isReadOnly,
-}: TextInputProps) => (
-  <input
+}: TextareaProps) => (
+  <textarea
     value={value}
     placeholder={placeholder}
     onChange={handleChange}
-    type={type}
     id={id}
     readOnly={isReadOnly}
     className={classNameProps ?? 'border-2 w-8/12 h-9 px-3'}
   />
 );
 
-export default TextInput;
+export default Textarea;
