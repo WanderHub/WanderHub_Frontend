@@ -12,7 +12,7 @@ export interface PostFormDataType {
 }
 const initialState = {
   nickname: '',
-  maxPeople: 0,
+  maxPeople: '',
   location: '',
   title: '',
   content: '',
