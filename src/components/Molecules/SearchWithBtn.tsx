@@ -3,29 +3,44 @@ import Button from '@components/Atoms/Button';
 import TextInput from '@components/Atoms/TextInput';
 import useInput from '@/hooks/useInput';
 
-interface SearchProps {
+interface SearchWithBtnProps {
   BoxClassNameProps?: string;
+  isReset: boolean;
   buttonProps: {
     children: string;
     classNameProps?: string;
+    type?: 'button' | 'submit' | 'reset';
   };
   inputProps: {
     classNameProps?: string;
     placeholder: string;
   };
 }
-const Search = ({ BoxClassNameProps, buttonProps, inputProps }: SearchProps) => {
+const SearchWithBtn = ({
+  BoxClassNameProps,
+  isReset,
+  buttonProps,
+  inputProps,
+}: SearchWithBtnProps) => {
   const [targetVal, onChangeTarget, resetValue] = useInput('');
   const handleSearch = () => {
     console.log('검색어:', targetVal);
-    resetValue();
+    if (isReset) resetValue();
   };
   return (
     <div className={BoxClassNameProps ?? 'my-3 text-center'}>
-      <TextInput {...inputProps} val={targetVal} changeEvent={onChangeTarget} />
-      <Button clickEvent={handleSearch}>{buttonProps?.children}</Button>
+      <TextInput
+        {...inputProps}
+        value={targetVal}
+        type="text"
+        handleChange={onChangeTarget}
+        isReadOnly={false}
+      />
+      <Button clickEvent={handleSearch} type={buttonProps.type}>
+        {buttonProps?.children}
+      </Button>
     </div>
   );
 };
 
-export default Search;
+export default SearchWithBtn;
