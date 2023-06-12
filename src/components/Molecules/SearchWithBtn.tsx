@@ -10,6 +10,7 @@ interface SearchWithBtnProps {
     children: string;
     classNameProps?: string;
     type?: 'button' | 'submit' | 'reset';
+    getSearchText: (value: string) => void;
   };
   inputProps: {
     classNameProps?: string;
@@ -25,6 +26,7 @@ const SearchWithBtn = ({
   const [targetVal, onChangeTarget, resetValue] = useInput('');
   const handleSearch = () => {
     console.log('검색어:', targetVal);
+    buttonProps.getSearchText(targetVal);
     if (isReset) resetValue();
   };
   return (
