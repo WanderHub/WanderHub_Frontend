@@ -1,4 +1,4 @@
-import Card, { CardProps } from '@components/Molecules/Card';
+import Card, { CardProps } from '@components/accompany/Card';
 import React from 'react';
 
 type CardListProps = {

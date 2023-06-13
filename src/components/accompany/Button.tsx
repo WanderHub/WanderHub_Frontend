@@ -1,9 +1,9 @@
 import React from 'react';
 
 export interface ButtonProps {
-  clickEvent: () => void;
+  clickEvent?: () => void;
   classNameProps?: string;
-  children: string | React.ReactNode;
+  children: string | React.ReactElement;
   type?: 'button' | 'submit' | 'reset';
 }
 

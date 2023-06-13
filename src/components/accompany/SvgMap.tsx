@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Path from '@/components/Atoms/Path';
+import Path from '@components/accompany/Path';
 
 interface SvgMapProps {
   pathList: Array<{ id: string; name: string; d: string }>;
