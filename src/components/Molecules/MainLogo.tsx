@@ -6,7 +6,7 @@ import Image from '@components/Atoms/Image';
 const MainLogo = () => {
   return (
     <LinkButton path={'/'} classNameProps={'text-white font-bold text-xl'}>
-      <Image src={Logo} alt="mainLogo" />
+      <Image src={Logo} alt="mainLogo" width={50} height={50} />
     </LinkButton>
   );
 };

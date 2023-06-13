@@ -3,7 +3,7 @@ import React from 'react';
 export interface ButtonProps {
   clickEvent?: () => void;
   classNameProps?: string;
-  children: string | React.ReactElement;
+  children: string | React.ReactNode;
   type?: 'button' | 'submit' | 'reset';
 }
 
