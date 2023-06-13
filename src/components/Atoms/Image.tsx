@@ -11,8 +11,8 @@ const Image = ({ src, alt, width, height, classNameProps }: ImageProps) => {
     <img
       src={src}
       alt={alt}
-      width={width ?? 50}
-      height={height ?? 50}
+      width={width ?? ''}
+      height={height ?? ''}
       className={classNameProps ?? ''}
     />
   );

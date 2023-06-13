@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import LinkButton from '@components/Atoms/LinkButton';
 import Button from '@components/Atoms/Button';
 import MainLogo from '@components/Molecules/MainLogo';
+import { ModalProps } from '../../Pages/Login/Modal';
 
 const LinkList = [
   {
@@ -19,7 +20,7 @@ const LinkList = [
   },
 ];
 
-const Header = () => {
+const Header = ({ setOpenModal }: ModalProps) => {
   const location = useLocation();
   return (
     <header className="bg-primary py-4 border-b border-gray-300">
@@ -48,9 +49,9 @@ const Header = () => {
         <div>
           <Button
             classNameProps="text-gray-300 hover:text-white border border-gray-300 rounded-full px-4 py-2"
-            clickEvent={() => console.log('click')}
+            clickEvent={() => setOpenModal(true)}
           >
-            내정보
+            로그인
           </Button>
         </div>
       </nav>
