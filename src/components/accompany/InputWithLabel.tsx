@@ -1,8 +1,8 @@
-import Label, { LabelProps } from '@components/Atoms/Label';
-import TextInput, { TextInputProps } from '@components/Atoms/TextInput';
+import Label, { LabelProps } from '@components/accompany/Label';
+import TextInput, { TextInputProps } from '@components/accompany/TextInput';
 import React from 'react';
 import SearchWithIcon from './SearchWithIcon';
-import Textarea, { TextareaProps } from '@components/Atoms/Textarea';
+import Textarea, { TextareaProps } from '@components/accompany/Textarea';
 
 interface InputWithLabelProps {
   labelProps: LabelProps;

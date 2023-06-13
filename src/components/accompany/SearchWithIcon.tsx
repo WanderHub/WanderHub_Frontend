@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TextInput, { TextInputProps } from '@components/Atoms/TextInput';
+import TextInput, { TextInputProps } from '@components/accompany/TextInput';
 import { AiOutlineSearch } from 'react-icons/ai';
 import KaKaoSearchModal from './KaKaoSearchModal';
 

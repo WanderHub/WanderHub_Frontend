@@ -1,4 +1,4 @@
-import Image from '@components/Atoms/Image';
+import Image from '@components/accompany/Image';
 import React from 'react';
 
 export type CardProps = {

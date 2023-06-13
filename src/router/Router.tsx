@@ -1,8 +1,8 @@
-import { Route, Routes } from 'react-router-dom';
-import Home from '@components/Pages/Home/Home';
-import Accompany from '@components/Pages/Accompany/Accompany';
 import React from 'react';
-import AccompanyPost from '@components/Pages/Accompany/AccompanyPost';
+import { Route, Routes } from 'react-router-dom';
+import Home from '@/Pages/Home/Home';
+import Accompany from '@/Pages/Accompany/Accompany';
+import AccompanyPost from '@/Pages/Accompany/AccompanyPost';
 
 const Router = () => {
   return (

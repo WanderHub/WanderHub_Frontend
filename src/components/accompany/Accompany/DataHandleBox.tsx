@@ -1,8 +1,8 @@
 import React from 'react';
-import AtomCalendar from '@components/Atoms/AtomCalendar';
-import SvgMap from '@components/Molecules/SvgMap';
+import ReactCalendar from '@components/accompany/ReactCalendar';
+import SvgMap from '@components/accompany/SvgMap';
 import CardList from './CardList';
-import Button from '@components/Atoms/Button';
+import Button from '@components/accompany/Button';
 import { mapList } from '@/constant/MapPath';
 import { formatDate } from '@/utils/commonUtil';
 import { accompanyList } from '@/constant/DummyData';
@@ -19,7 +19,7 @@ const DataHandleBox = () => {
           <SvgMap pathList={mapList} />
         </div>
         <div className="w-[45%] max-h-[50vh]">
-          <AtomCalendar getDateFunc={getDateFunc} />
+          <ReactCalendar getDateFunc={getDateFunc} />
         </div>
       </div>
       <div className="mt-[2rem] pt-[1rem] border-t-2 border-gray-300 ">

@@ -1,7 +1,7 @@
 import { accompanyPostInputs } from '@/constant/AccompanyPostInputs';
 import React, { ChangeEvent, useState } from 'react';
 import InputWithLabel from './InputWithLabel';
-import Button from '@components/Atoms/Button';
+import Button from '@components/accompany/Button';
 
 interface FormProps {
   initialState: object;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AtomCalendar from '@components/Atoms/AtomCalendar';
-import Form from '@components/Molecules/Form';
+import ReactCalendar from '@components/accompany/ReactCalendar';
+import Form from '@components/accompany/Form';
 
 export interface PostFormDataType {
   content: string;
@@ -31,10 +31,10 @@ const PostDataHandleBox = () => {
   return (
     <>
       <div className="flex justify-around mt-[2rem] mb-[2rem]">
-        <div className="w-[45%] max-h-[50vh]">
-          <AtomCalendar getDateFunc={getDateFunc} />
+        <div className="w-[45%]">
+          <ReactCalendar getDateFunc={getDateFunc} />
         </div>
-        <div className="w-[45%] max-h-[50vh] border-2 shadow-md inset p-2 rounded-md">
+        <div className="w-[45%] border-2 shadow-md inset p-2 rounded-md">
           <Form initialState={initialState} submitFunc={submitFunc} btnTxt="등록" />
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '@components/Atoms/Button';
-import TextInput from '@components/Atoms/TextInput';
+import Button from '@components/accompany/Button';
+import TextInput from '@components/accompany/TextInput';
 import useInput from '@/hooks/useInput';
 
 interface SearchWithBtnProps {
