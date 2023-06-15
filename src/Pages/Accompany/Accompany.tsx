@@ -3,9 +3,9 @@ import Footer from '@components/Common/Footer';
 import Header from '@components/Common/Header';
 import Container from '@/components/Common/Container';
 import Title from '@/components/accompany/Title';
-import DataHandleBox from '@/components/accompany/Accompany/DataHandleBox';
+import DataHandleBox from '@/components/accompany/main/DataHandleBox';
 import useRouter from '@/hooks/useRouter';
-import Modal from '../Login/Modal';
+import Modal from '@/Pages/Login/Modal';
 
 const AccompanyPage = () => {
   const { goTo } = useRouter();
@@ -14,12 +14,15 @@ const AccompanyPage = () => {
     <>
       <Header setOpenModal={setOpenModal} />
       <Container>
-        <Title
-          title={'동행'}
-          isWithBtn={true}
-          btnTxt={'글쓰기'}
-          clickEvent={() => goTo('/accompany/post')}
-        />
+        <div className="flex justify-end">
+          <button
+            className="text-gray-300 hover:text-white border border-gray-300 rounded-full px-4 py-2 bg-primary"
+            onClick={() => goTo('/accompany/post')}
+          >
+            글쓰기
+          </button>
+        </div>
+        <Title title={'동행'} />
         <DataHandleBox />
       </Container>
       {openModal ? <Modal setOpenModal={setOpenModal} /> : ''}

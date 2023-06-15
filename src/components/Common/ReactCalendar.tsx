@@ -5,15 +5,15 @@ import { Value } from 'react-calendar/dist/cjs/shared/types';
 import { formatDate } from '@/utils/commonUtil';
 
 interface ReactCalendarProps {
-  getDateFunc: (date: string) => void;
+  getDate: (date: string) => void;
 }
 
-const ReactCalendar = ({ getDateFunc }: ReactCalendarProps) => {
+const ReactCalendar = ({ getDate }: ReactCalendarProps) => {
   const [date, setDate] = useState<Date>(new Date());
   const handleDateChange = (targetDate: Value) => {
     if (targetDate instanceof Date) {
       setDate(targetDate);
-      getDateFunc(formatDate(targetDate));
+      getDate(formatDate(targetDate));
     }
   };
 

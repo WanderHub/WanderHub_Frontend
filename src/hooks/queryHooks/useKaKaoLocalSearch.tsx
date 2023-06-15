@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-const useKaKaoLocalSearch = (searchVal: string) => {
+const useKaKaoLocalSearch = (searchVal: string, isAction: boolean) => {
   const { data, isLoading, error } = useQuery(
     ['kakaoLocal', searchVal],
     () => {
@@ -18,10 +18,9 @@ const useKaKaoLocalSearch = (searchVal: string) => {
         .catch(err => console.log(err));
     },
     {
-      enabled: !!searchVal,
+      enabled: isAction && !!searchVal,
     },
   );
-  console.log(data, isLoading, error);
 
   return { data, isLoading, error };
 };

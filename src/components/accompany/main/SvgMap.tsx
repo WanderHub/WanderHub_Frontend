@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Path from '@components/accompany/Path';
 
 interface SvgMapProps {
   pathList: Array<{ id: string; name: string; d: string }>;
@@ -7,7 +6,10 @@ interface SvgMapProps {
 
 const SvgMap = ({ pathList }: SvgMapProps) => {
   const [curTarget, setCurTarget] = useState('');
-  const handleTarget = (targetId: string) => setCurTarget(targetId);
+  const handleTarget = (targetId: string) => {
+    console.log(targetId);
+    setCurTarget(targetId);
+  };
 
   return (
     <svg
@@ -17,7 +19,16 @@ const SvgMap = ({ pathList }: SvgMapProps) => {
       className="bg-sky-200 w-full h-full rounded-2xl"
     >
       {pathList.map(item => {
-        return <Path key={item.id} item={item} curTarget={curTarget} handleTarget={handleTarget} />;
+        return (
+          <path
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            d={item.d}
+            onClick={() => handleTarget(item.id)}
+            className={curTarget === item.id ? 'fill-primary' : 'hover:fill-gray-200 fill-white'}
+          />
+        );
       })}
     </svg>
   );

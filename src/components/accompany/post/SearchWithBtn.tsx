@@ -1,6 +1,4 @@
 import React from 'react';
-import Button from '@components/accompany/Button';
-import TextInput from '@components/accompany/TextInput';
 import useInput from '@/hooks/useInput';
 
 interface SearchWithBtnProps {
@@ -31,16 +29,17 @@ const SearchWithBtn = ({
   };
   return (
     <div className={BoxClassNameProps ?? 'my-3 text-center'}>
-      <TextInput
+      <input
         {...inputProps}
+        className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
         value={targetVal}
         type="text"
-        handleChange={onChangeTarget}
-        isReadOnly={false}
+        onChange={onChangeTarget}
+        readOnly={false}
       />
-      <Button clickEvent={handleSearch} type={buttonProps.type}>
+      <button onClick={handleSearch} type={buttonProps.type}>
         {buttonProps?.children}
-      </Button>
+      </button>
     </div>
   );
 };
