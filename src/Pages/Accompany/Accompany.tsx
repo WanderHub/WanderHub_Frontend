@@ -7,6 +7,7 @@ import DataHandleBox from '@/components/accompany/main/DataHandleBox';
 import useRouter from '@/hooks/useRouter';
 import Modal from '@/Pages/Login/Modal';
 
+
 const AccompanyPage = () => {
   const { goTo } = useRouter();
   const [openModal, setOpenModal] = useState(false);

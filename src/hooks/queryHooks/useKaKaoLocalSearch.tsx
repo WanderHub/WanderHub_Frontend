@@ -24,7 +24,6 @@ const useKaKaoLocalSearch = (searchVal: string, isAction: boolean) => {
       enabled: isAction && !!searchVal,
     },
   );
-
   return { data, isLoading, error };
 };
 
