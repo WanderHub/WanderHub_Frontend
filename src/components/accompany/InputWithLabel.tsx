@@ -122,4 +122,3 @@ const InputWithIcon = ({ id, handleChange }: InputProps) => {
     </>
   );
 };
-
