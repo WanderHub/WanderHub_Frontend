@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import ReactCalendar from '@components/Common/ReactCalendar';
 import PostForm from '@components/accompany/post/PostForm';
 
-export interface PostFormDataType {
+export interface FormDataType {
   content: string;
   location: string;
-  maxPeople: number;
+  maxPeople: number | string;
   nickname: string;
   title: string;
-  accompanyDate: string;
 }
 
 const PostDataHandleBox = () => {
   const [accompanyDate, setAccompanyDate] = useState('');
-  const handleSubmit = (formData: PostFormDataType) => {
+  const handleSubmit = (formData: FormDataType) => {
     console.log({ ...formData, accompanyDate });
   };
   const getDate = (date: string) => {

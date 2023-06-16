@@ -1,4 +1,4 @@
-export interface KaKaoLocalList {
+export interface KaKaoLocalListType {
   address_name: string;
   category_group_code: string;
   category_group_name: string;
@@ -12,4 +12,3 @@ export interface KaKaoLocalList {
   x: string;
   y: string;
 }
-[];

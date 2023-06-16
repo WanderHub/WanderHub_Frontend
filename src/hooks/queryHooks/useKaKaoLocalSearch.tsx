@@ -4,18 +4,21 @@ import { useQuery } from 'react-query';
 const useKaKaoLocalSearch = (searchVal: string, isAction: boolean) => {
   const { data, isLoading, error } = useQuery(
     ['kakaoLocal', searchVal],
-    () => {
-      axios
-        .get(`https://dapi.kakao.com/v2/local/search/keyword.json?query=${searchVal}`, {
-          headers: {
-            Authorization: `KakaoAK ${import.meta.env.VITE_KAKAO_API_KEY}`,
+    async () => {
+      try {
+        const response = await axios.get(
+          `https://dapi.kakao.com/v2/local/search/keyword.json?query=${searchVal}`,
+          {
+            headers: {
+              Authorization: `KakaoAK ${import.meta.env.VITE_KAKAO_API_KEY}`,
+            },
           },
-        })
-        .then(res => {
-          console.log(res);
-          return res.data;
-        })
-        .catch(err => console.log(err));
+        );
+        return response.data.documents;
+      } catch (error) {
+        console.log('@@@@', error);
+        throw error;
+      }
     },
     {
       enabled: isAction && !!searchVal,

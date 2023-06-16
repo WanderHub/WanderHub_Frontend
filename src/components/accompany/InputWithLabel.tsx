@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useState } from 'react';
-// import SearchWithIcon from '@components/accompany/post/SearchWithIcon';
 import { AiOutlineSearch } from 'react-icons/ai';
 import KaKaoSearchModal from './post/KaKaoSearchModal';
 interface LabelProps {
@@ -9,8 +8,8 @@ interface LabelProps {
 }
 export interface InputProps {
   placeholder: string;
-  value: string;
-  handleChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  value: string | number;
+  handleChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string) => void;
   classNameProps?: string;
   id: string;
   compType?: string;
@@ -40,7 +39,7 @@ const InputWithLabel = ({ labelProps, inputProps }: InputWithLabelProps) => {
       case 'input':
         return <TextInput {...inputProps} />;
       case 'iconInput':
-        return <SearchWithIcon {...inputProps} isModal={true} />;
+        return <InputWithIcon {...inputProps} />;
       case 'textarea':
         return <Textarea {...inputProps} />;
       default:
@@ -52,7 +51,6 @@ const InputWithLabel = ({ labelProps, inputProps }: InputWithLabelProps) => {
       <label htmlFor={labelProps.htmlFor} className={labelProps.classNameProps}>
         {labelProps.labelText}
       </label>
-      {/* <Label {...labelProps} /> */}
       {TextFieldOption(inputProps.compType)}
     </>
   );
@@ -62,6 +60,7 @@ export default InputWithLabel;
 
 const TextInput = ({ placeholder, value, handleChange, id, isReadOnly, type }: InputProps) => (
   <input
+    required
     value={value}
     placeholder={placeholder}
     onChange={handleChange}
@@ -76,40 +75,50 @@ const TextInput = ({ placeholder, value, handleChange, id, isReadOnly, type }: I
 
 const Textarea = ({ placeholder, value, handleChange, id, isReadOnly }: InputProps) => (
   <textarea
+    required
     value={value}
     placeholder={placeholder}
     onChange={handleChange}
     id={id}
     readOnly={isReadOnly}
     className={
-      'w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500'
+      'w-full h-[15vh] resize-none px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500'
     }
   />
 );
-const SearchWithIcon = (props: any) => {
-  // 프롭스 리스트 - placeholder,value,handleChange,classNameProps?,id?,type,isModal,isReadOnly,
-  const { isModal } = props;
+const InputWithIcon = ({ id, handleChange }: InputProps) => {
+  const [locationVal, setLocationVal] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [placeholder, setPlaceHolder] = useState('장소를 검색해주세요.');
   const handleModal = () => {
     setIsOpen(!isOpen);
   };
+  const getLocation = (place_name: string, x: string, y: string) => {
+    console.log('@@@@@', place_name, x, y);
+    handleChange(place_name);
+    setLocationVal(place_name);
+    handleModal();
+  };
   return (
     <>
       <div className="relative w-full">
         <input
+          required
+          value={locationVal}
           type="text"
+          id={id}
           placeholder={placeholder}
-          readOnly
+          readOnly={!locationVal ? false : true}
+          className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
           onFocus={() => setPlaceHolder('돋보기를 클릭해주세요.')}
           onBlur={() => setPlaceHolder('장소를 검색해주세요.')}
-          className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+          onChange={() => setLocationVal('')}
         />
         <div onClick={handleModal} className="absolute right-2 top-2 bottom-2 flex items-center">
           <AiOutlineSearch className="text-gray-500 cursor-pointer text-2xl hover:text-green-500" />
         </div>
       </div>
-      {isModal && isOpen && <KaKaoSearchModal handleModal={handleModal} />}
+      {isOpen && <KaKaoSearchModal handleModal={handleModal} getLocation={getLocation} />}
     </>
   );
 };

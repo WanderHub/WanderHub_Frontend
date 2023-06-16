@@ -9,7 +9,8 @@ interface ReactCalendarProps {
 }
 
 const ReactCalendar = ({ getDate }: ReactCalendarProps) => {
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date | null>(null);
+  // const [date, setDate] = useState<Date>(new Date());
   const handleDateChange = (targetDate: Value) => {
     if (targetDate instanceof Date) {
       setDate(targetDate);

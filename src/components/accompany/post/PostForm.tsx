@@ -1,6 +1,7 @@
 import { accompanyPostInputs } from '@/constant/AccompanyPostInputs';
 import React, { ChangeEvent, useState } from 'react';
 import InputWithLabel from '@components/accompany/InputWithLabel';
+import { FormDataType } from './PostDataHandleBox';
 
 const initialState = {
   nickname: '',
@@ -10,21 +11,26 @@ const initialState = {
   content: '',
 };
 interface PostFormProps {
-  handleSubmit: (formData: any) => void;
+  handleSubmit: (formData: FormDataType) => void;
 }
 
 const PostForm = ({ handleSubmit }: PostFormProps) => {
-  const [form, setForm] = useState({ ...initialState });
+  const [form, setForm] = useState<FormDataType>({ ...initialState });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string) => {
+    if (typeof e === 'string') {
+      setForm({
+        ...form,
+        ['location']: e,
+      });
+      return;
+    }
     setForm({
       ...form,
-      [e.target.id]: e.target.value,
+      [e.target.id]: e.target.id !== 'maxPeople' ? e.target.value : parseInt(e.target.value),
     });
   };
   const getFormData = (e: React.FormEvent) => {
-    // console.log(e);
-    e.stopPropagation();
     e.preventDefault();
     handleSubmit(form);
   };
