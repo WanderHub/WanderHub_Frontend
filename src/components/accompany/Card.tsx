@@ -1,4 +1,3 @@
-import Image from '@components/accompany/Image';
 import React from 'react';
 
 export type CardProps = {
@@ -13,7 +12,7 @@ const Card = ({ title, curPeople, maxPeople, location, imgPath }: CardProps) => 
   return (
     <div className="border border-gray-300 rounded-2xl overflow-hidden cursor-pointer">
       <div className="h-[65%]">
-        <Image src={imgPath} alt={title} classNameProps="w-full h-full" />
+        <img src={imgPath} alt={title} className="w-full h-full" />
       </div>
       <div className="p-4">
         <p>{location}</p>
