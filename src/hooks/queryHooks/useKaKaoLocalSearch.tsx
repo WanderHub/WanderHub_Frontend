@@ -10,7 +10,7 @@ const useKaKaoLocalSearch = (searchVal: string, isAction: boolean) => {
           `https://dapi.kakao.com/v2/local/search/keyword.json?query=${searchVal}`,
           {
             headers: {
-              Authorization: `KakaoAK ${import.meta.env.VITE_KAKAO_API_KEY}`,
+              Authorization: `KakaoAK ${import.meta.env.VITE_KAKAO_REST_API_KEY}`,
             },
           },
         );
