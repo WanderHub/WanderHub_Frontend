@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '@assets/logo.png';
 import { useLocation } from 'react-router-dom';
-import { ModalProps } from '../../Pages/Login/Modal';
+import { ModalProps } from '../../pages/Login/Modal';
 import { Link } from 'react-router-dom';
 
 const LinkList = [

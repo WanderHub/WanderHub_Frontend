@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Footer from '@components/Common/Footer';
-import Header from '@components/Common/Header';
-import Container from '@/components/Common/Container';
+import Footer from '@components/common/Footer';
+import Header from '@components/common/Header';
+import Container from '@/components/common/Container';
+import Modal from '@pages/Login/Modal';
 
 const AccompanyDetail = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -11,6 +12,7 @@ const AccompanyDetail = () => {
       <Header setOpenModal={setOpenModal} />
       <Container>디테일</Container>
       <Footer />
+      {openModal ? <Modal setOpenModal={setOpenModal} /> : ''}
     </>
   );
 };

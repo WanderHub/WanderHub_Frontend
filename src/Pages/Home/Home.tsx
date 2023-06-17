@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Footer from '@components/Common/Footer';
-import Header from '@components/Common/Header';
-import Modal from '@/Pages/Login/Modal';
+import Footer from '@components/common/Footer';
+import Header from '@components/common/Header';
+import Modal from '@/pages/Login/Modal';
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
