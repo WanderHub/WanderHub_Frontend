@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactCalendar from '@components/Common/ReactCalendar';
+import ReactCalendar from '@components/common/ReactCalendar';
 import SvgMap from '@components/accompany/main/SvgMap';
 import CardList from '@components/accompany/CardList';
 // import Button from '@components/accompany/Button';
