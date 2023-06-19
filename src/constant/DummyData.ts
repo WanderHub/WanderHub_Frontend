@@ -19,8 +19,9 @@ export const accompanyList = [
     accompanyLocal: '서울',
     accompanyDate: '2023-07-01',
     maxNum: 5,
-    accompanyTitle: '같이 돌하르방 보러가요',
-    accompanyContent: '고고고고',
+    accompanyTitle: '같이 돌하르방 보러가요오오오오오오오오 보러가요오오오오오오오오',
+    accompanyContent:
+      '고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고고',
     openStatus: true,
     createdAt: null,
     modifiedAt: null,

@@ -25,7 +25,8 @@
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "react-kakao-maps-sdk": ["node_modules/react-kakao-maps-sdk/lib/@types/index.d.ts"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"],
