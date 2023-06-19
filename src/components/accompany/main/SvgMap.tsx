@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 
 interface SvgMapProps {
   pathList: Array<{ id: string; name: string; d: string }>;
+  curLocal: string | null;
+  getLocalName: (name: string) => void;
 }
 
-const SvgMap = ({ pathList }: SvgMapProps) => {
-  const [curTarget, setCurTarget] = useState('');
+const SvgMap = ({ pathList, curLocal, getLocalName }: SvgMapProps) => {
+  // const [curTarget, setCurTarget] = useState('');
   const handleTarget = (targetId: string) => {
     console.log(targetId);
-    setCurTarget(targetId);
+    // setCurTarget(targetId);
+    getLocalName(targetId);
   };
 
   return (
@@ -26,7 +29,7 @@ const SvgMap = ({ pathList }: SvgMapProps) => {
             name={item.name}
             d={item.d}
             onClick={() => handleTarget(item.id)}
-            className={curTarget === item.id ? 'fill-primary' : 'hover:fill-gray-200 fill-white'}
+            className={curLocal === item.id ? 'fill-primary' : 'hover:fill-gray-200 fill-white'}
           />
         );
       })}
