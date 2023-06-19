@@ -8,7 +8,6 @@ const DetailBox = () => {
   // detail api호출해서 데이타를 컴포넌트에 프롭스로 내려줘야함
   const { accompanyId } = useParams();
   // console.log('이값으로 api호출보내야함 :', accompanyId);
-
   return (
     <>
       <div className="flex justify-between mt-[.5rem]">
