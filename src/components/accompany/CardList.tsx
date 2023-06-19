@@ -1,17 +1,18 @@
-import Card, { CardProps } from '@components/accompany/Card';
 import React from 'react';
+import { AccompanyDataType } from '@/types/accompanyType';
+import Card from '@components/accompany/Card';
 
 type CardListProps = {
-  cards: CardProps[];
+  cards: AccompanyDataType[];
 };
 
 const CardList = ({ cards }: CardListProps) => {
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <ul className="grid grid-cols-4 gap-4">
       {cards.map((card, index) => (
         <Card key={index} {...card} />
       ))}
-    </div>
+    </ul>
   );
 };
 export default CardList;

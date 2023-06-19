@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 const DetailBox = () => {
   // detail api호출해서 데이타를 컴포넌트에 프롭스로 내려줘야함
   const { accompanyId } = useParams();
-  console.log('이값으로 api호출보내야함 :', accompanyId);
+  // console.log('이값으로 api호출보내야함 :', accompanyId);
 
   return (
     <>
@@ -20,6 +20,7 @@ const DetailBox = () => {
           이 여행자의 다른여행일정
         </button>
         <button
+          onClick={() => console.log('click!')}
           className={
             'text-gray-300 mb-[.5rem] hover:text-white border border-gray-300 rounded-lg px-4 py-2 bg-primary'
           }
