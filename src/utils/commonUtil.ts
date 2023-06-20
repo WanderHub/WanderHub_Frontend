@@ -4,3 +4,20 @@ export const formatDate = (date: Date): string => {
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
+
+type QueryToObjType = {
+  [key: string]: string;
+};
+export const querystringToObject = (queryString: string): QueryToObjType => {
+  const queryObject: QueryToObjType = {};
+  if (!queryString) queryObject;
+  const queryParams = queryString.substr(1).split('&');
+  for (const param of queryParams) {
+    const [key, value] = param.split('=');
+    if (!key) {
+      continue;
+    }
+    queryObject[key] = value;
+  }
+  return queryObject;
+};
