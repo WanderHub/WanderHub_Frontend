@@ -22,11 +22,11 @@ const LinkList = [
 const Header = ({ setOpenModal }: ModalProps) => {
   const location = useLocation();
   return (
-    <header className="bg-primary py-4 border-b border-gray-300">
+    <header className="flex bg-primary py-4 border-b border-gray-300 h-[10vh]">
       <nav className="container mx-auto flex items-center justify-between">
         <div>
           <Link to={'/'} className={'text-white font-bold text-xl'}>
-            <img src={Logo} alt="mainLogo" width={50} height={50} />
+            <img className="w-[4rem] h-[4rem]" src={Logo} alt="mainLogo" />
           </Link>
         </div>
         <ul className="mr-auto ml-5 flex space-x-4">
@@ -37,8 +37,8 @@ const Header = ({ setOpenModal }: ModalProps) => {
                   to={link.path}
                   className={
                     location.pathname.includes(link.path)
-                      ? 'text-white hover:text-white border-b border-white'
-                      : 'text-gray-300 hover:text-white'
+                      ? 'text-white hover:text-white border-b border-white text-xl'
+                      : 'text-gray-300 hover:text-white text-xl'
                   }
                 >
                   {link.title}
