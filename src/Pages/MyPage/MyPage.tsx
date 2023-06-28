@@ -27,7 +27,7 @@ const MyPage = () => {
   return (
     <>
       <Header setOpenModal={setOpenModal} />
-      <div className="grid grid-cols-5 w-[80%] mx-auto">
+      <div className="w-[80%] min-h-[80vh] mx-auto grid grid-cols-5">
         <SideBar curTab={curTab} handleTab={handleTab} />
         <ControlBox curTab={curTab} />
       </div>
