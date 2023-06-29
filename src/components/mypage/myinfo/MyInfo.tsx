@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ChangeEvent, useEffect } from 'react';
+import React, { useState, useCallback, ChangeEvent } from 'react';
 import { mapList } from '@/constant/MapPath';
 
 type UserProfileType = {
@@ -59,27 +59,20 @@ const MyInfo = () => {
           {isEditing ? '저장' : '수정'}
         </button>
       </div>
-
-      <div className="flex flex-col items-center h-full">
-        <div className="col-span-2 flex justify-center w-full h-[60%] items-center">
-          {isEditing ? (
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="border px-2 py-1"
-            />
-          ) : (
-            <img
-              src={user.profileImage}
-              alt="Profile"
-              className="w-[100%] object-cover rounded-full"
-            />
-          )}
-        </div>
+      <div className="flex flex-col justify-center items-center w-[50%] h-full">
+        {isEditing ? (
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="border px-2 py-1"
+          />
+        ) : (
+          <img src={user.profileImage} alt="Profile" className="w-52 h-52 rounded-full mx-auto" />
+        )}
         <div
           style={{ justifyItems: 'flex-start', gridTemplateColumns: '30% 80%' }}
-          className="grid content-center grid-cols-2 gap-2 w-[100%]"
+          className="grid content-center grid-cols-2 gap-2 w-52 mt-10 mb-[20%]"
         >
           <label className="font-bold text-right">닉네임 : </label>
           <span>{user.name}</span>
