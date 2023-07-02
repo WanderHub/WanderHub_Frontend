@@ -11,11 +11,11 @@ const LinkList = [
   },
   {
     title: '여행지',
-    path: '/travel', // 예비로 넣어놓음
+    path: '/travel',
   },
   {
     title: '커뮤니티',
-    path: '/comunity', // 예비로 넣어놓음
+    path: '/community',
   },
 ];
 
