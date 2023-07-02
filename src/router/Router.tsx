@@ -7,6 +7,7 @@ import AccompanyDetail from '@/pages/Accompany/AccompanyDetail';
 import Comunity from '@/Pages/Community/Community';
 import Writing from '@/Pages/Community/Writing/Writing';
 import NotFound from '@/pages/NotFound.tsx/NotFound';
+import MyPage from '@pages/MyPage/MyPage';
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
       <Route path="/accompany" element={<Accompany />} />
       <Route path="/accompany/post" element={<AccompanyPost />} />
       <Route path="/accompany/:accompanyId" element={<AccompanyDetail />} />
+      <Route path="/mypage" element={<MyPage />} />
       <Route path="/community" element={<Comunity />} />
       <Route path="/community/writing" element={<Writing />} />
       <Route path="*" element={<NotFound />} />
