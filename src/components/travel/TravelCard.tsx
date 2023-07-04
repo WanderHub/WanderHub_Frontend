@@ -1,10 +1,10 @@
 import React from 'react';
 import { travelCategory } from '@/constant/categoryCode';
 
-const TravelCard = (props: any) => {
+const TravelCard = (props: Record<string, string>) => {
   const findCateName = (cateCode: string) => {
     const idx = travelCategory.findIndex(item => item.code === cateCode);
-    if (idx === -1) return false;
+    if (idx === -1) return '';
     return travelCategory[idx].name;
   };
 
@@ -31,7 +31,7 @@ const TravelCard = (props: any) => {
                 key={item}
                 className="text-xs mb-2 mr-2 py-1.5 px-4 text-gray-600 bg-purple-200 rounded-2xl"
               >
-                {findCateName(item)}
+                #{findCateName(item).replace(' ', '')}
               </div>
             ) : (
               ''
