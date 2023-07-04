@@ -8,6 +8,7 @@ import Comunity from '@/Pages/Community/Community';
 import Writing from '@/Pages/Community/Writing/Writing';
 import NotFound from '@/pages/NotFound.tsx/NotFound';
 import MyPage from '@pages/MyPage/MyPage';
+import Travel from '@pages/Travel/Travel';
 
 const Router = () => {
   return (
@@ -19,6 +20,7 @@ const Router = () => {
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/community" element={<Comunity />} />
       <Route path="/community/writing" element={<Writing />} />
+      <Route path="/travel" element={<Travel />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
