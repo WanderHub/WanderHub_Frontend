@@ -1,247 +1,40 @@
 import React from 'react';
 import TravelCard from '@/components/travel/TravelCard';
 
-const test = [
-  {
-    addr1: '서울 송파구 올림픽로 300¸ 2층',
-    addr2: '',
-    areacode: '1',
-    booktour: '',
-    cat1: 'A04',
-    cat2: 'A0401',
-    cat3: 'A04011000',
-    contentid: '2924134',
-    contenttypeid: '38',
-    createdtime: '20221030182739',
-    firstimage: 'http://tong.visitkorea.or.kr/cms/resource/00/2879100_image2_1.jpg',
-    firstimage2: 'http://tong.visitkorea.or.kr/cms/resource/00/2879100_image3_1.jpg',
-    cpyrhtDivCd: 'Type3',
-    mapx: '127.1040305171',
-    mapy: '37.5142459111',
-    mlevel: '6',
-    modifiedtime: '20221128170255',
-    sigungucode: '18',
-    tel: '',
-    title: '가가밀라노 롯데백화점 에비뉴엘 월드타워점',
-    zipcode: '05551',
-  },
-  {
-    addr1: '서울특별시 강남구 언주로 608',
-    addr2: '',
-    areacode: '1',
-    booktour: '',
-    cat1: 'A05',
-    cat2: 'A0502',
-    cat3: 'A05020100',
-    contentid: '2871024',
-    contenttypeid: '39',
-    createdtime: '20221019172623',
-    firstimage: 'http://tong.visitkorea.or.kr/cms/resource/08/2871008_image2_1.JPG',
-    firstimage2: 'http://tong.visitkorea.or.kr/cms/resource/08/2871008_image3_1.JPG',
-    cpyrhtDivCd: 'Type3',
-    mapx: '127.0377755568',
-    mapy: '37.5099674377',
-    mlevel: '6',
-    modifiedtime: '20221205152859',
-    sigungucode: '1',
-    tel: '',
-    title: '가나돈까스의집',
-    zipcode: '06102',
-  },
-  {
-    addr1: '서울특별시 종로구 평창30길 28',
-    addr2: '(평창동)',
-    areacode: '1',
-    booktour: '0',
-    cat1: 'A02',
-    cat2: 'A0206',
-    cat3: 'A02060500',
-    contentid: '129854',
-    contenttypeid: '14',
-    createdtime: '20071106103314',
-    firstimage: 'http://tong.visitkorea.or.kr/cms/resource/19/1570619_image2_1.jpg',
-    firstimage2: 'http://tong.visitkorea.or.kr/cms/resource/19/1570619_image3_1.jpg',
-    cpyrhtDivCd: 'Type3',
-    mapx: '126.9751811398',
-    mapy: '37.6122099878',
-    mlevel: '6',
-    modifiedtime: '20220914132849',
-    sigungucode: '23',
-    tel: '',
-    title: '가나아트센터',
-    zipcode: '03004',
-  },
-  {
-    addr1: '서울특별시 강남구 도산대로 113(신사동)',
-    addr2: '',
-    areacode: '1',
-    booktour: '',
-    cat1: 'A04',
-    cat2: 'A0401',
-    cat3: 'A04011000',
-    contentid: '2899721',
-    contenttypeid: '38',
-    createdtime: '20221101124622',
-    firstimage: 'http://tong.visitkorea.or.kr/cms/resource/58/2887858_image2_1.jpg',
-    firstimage2: 'http://tong.visitkorea.or.kr/cms/resource/58/2887858_image3_1.jpg',
-    cpyrhtDivCd: 'Type3',
-    mapx: '127.0208657845',
-    mapy: '37.5170635319',
-    mlevel: '6',
-    modifiedtime: '20221124095209',
-    sigungucode: '1',
-    tel: '',
-    title: '가나안약국',
-    zipcode: '06035',
-  },
-  {
-    addr1: '서울특별시 중구 남대문로 81',
-    addr2: '롯데백화점B1F',
-    areacode: '1',
-    booktour: '',
-    cat1: 'A04',
-    cat2: 'A0401',
-    cat3: 'A04011000',
-    contentid: '2928947',
-    contenttypeid: '38',
-    createdtime: '20221030221119',
-    firstimage: 'http://tong.visitkorea.or.kr/cms/resource/11/2889211_image2_1.jpg',
-    firstimage2: 'http://tong.visitkorea.or.kr/cms/resource/11/2889211_image3_1.jpg',
-    cpyrhtDivCd: 'Type3',
-    mapx: '126.9817485525',
-    mapy: '37.5647822864',
-    mlevel: '6',
-    modifiedtime: '20221202164435',
-    sigungucode: '24',
-    tel: '',
-    title: '가네시 롯데본점',
-    zipcode: '04533',
-  },
-  {
-    addr1: '서울특별시 강남구 언주로167길 35',
-    addr2: '',
-    areacode: '1',
-    booktour: '',
-    cat1: 'A05',
-    cat2: 'A0502',
-    cat3: 'A05020400',
-    contentid: '2869760',
-    contenttypeid: '39',
-    createdtime: '20221018170906',
-    firstimage: 'http://tong.visitkorea.or.kr/cms/resource/54/2869754_image2_1.JPG',
-    firstimage2: 'http://tong.visitkorea.or.kr/cms/resource/54/2869754_image3_1.JPG',
-    cpyrhtDivCd: 'Type3',
-    mapx: '127.0302729961',
-    mapy: '37.5264209476',
-    mlevel: '6',
-    modifiedtime: '20221102174147',
-    sigungucode: '1',
-    tel: '',
-    title: '가담',
-    zipcode: '06022',
-  },
-  {
-    addr1: '서울특별시 송파구 충민로 66',
-    addr2: '',
-    areacode: '1',
-    booktour: '',
-    cat1: 'A03',
-    cat2: 'A0302',
-    cat3: 'A03022600',
-    contentid: '732484',
-    contenttypeid: '38',
-    createdtime: '20090511234754',
-    firstimage: 'http://tong.visitkorea.or.kr/cms/resource/78/1920578_image2_1.jpg',
-    firstimage2: 'http://tong.visitkorea.or.kr/cms/resource/78/1920578_image3_1.jpg',
-    cpyrhtDivCd: 'Type3',
-    mapx: '127.1229354097',
-    mapy: '37.4770061292',
-    mlevel: '6',
-    modifiedtime: '20230320132421',
-    sigungucode: '18',
-    tel: '',
-    title: '가든파이브라이프(Garden5life)',
-    zipcode: '05838',
-  },
-  {
-    addr1: '서울특별시 송파구 송이로19길 3',
-    addr2: '(가락동)',
-    areacode: '1',
-    booktour: '',
-    cat1: 'A05',
-    cat2: 'A0502',
-    cat3: 'A05020100',
-    contentid: '2757617',
-    contenttypeid: '39',
-    createdtime: '20211015193340',
-    firstimage: '',
-    firstimage2: '',
-    cpyrhtDivCd: '',
-    mapx: '127.1217599348',
-    mapy: '37.4975120620',
-    mlevel: '6',
-    modifiedtime: '20221201092303',
-    sigungucode: '18',
-    tel: '',
-    title: '가락골마산아구찜',
-    zipcode: '05714',
-  },
-  {
-    addr1: '서울특별시 송파구 송파대로28길 5',
-    addr2: '(가락동)',
-    areacode: '1',
-    booktour: '',
-    cat1: 'B02',
-    cat2: 'B0201',
-    cat3: 'B02010100',
-    contentid: '142785',
-    contenttypeid: '32',
-    createdtime: '20040426090000',
-    firstimage: '',
-    firstimage2: '',
-    cpyrhtDivCd: '',
-    mapx: '127.1166298703',
-    mapy: '37.4966565128',
-    mlevel: '6',
-    modifiedtime: '20221227152917',
-    sigungucode: '18',
-    tel: '02-400-6641~3',
-    title: '가락관광호텔',
-    zipcode: '05719',
-  },
-  {
-    addr1: '서울특별시 송파구 양재대로 932',
-    addr2: '(가락동)',
-    areacode: '1',
-    booktour: '',
-    cat1: 'A04',
-    cat2: 'A0401',
-    cat3: 'A04010200',
-    contentid: '132215',
-    contenttypeid: '38',
-    createdtime: '20031117090000',
-    firstimage: 'http://tong.visitkorea.or.kr/cms/resource/84/1920584_image2_1.jpg',
-    firstimage2: 'http://tong.visitkorea.or.kr/cms/resource/84/1920584_image3_1.jpg',
-    cpyrhtDivCd: 'Type3',
-    mapx: '127.1109831778',
-    mapy: '37.4960925880',
-    mlevel: '6',
-    modifiedtime: '20230424130802',
-    sigungucode: '18',
-    tel: '02-3435-1000',
-    title: '가락농수산물종합도매시장',
-    zipcode: '05699',
-  },
-];
-const TravelCardBox = () => {
+interface TravelCardBoxTypes {
+  travelList?: {
+    addr1: string;
+    addr2: string;
+    areacode: string;
+    booktour: string;
+    cat1: string;
+    cat2: string;
+    cat3: string;
+    contentid: string;
+    contenttypeid: string;
+    createdtime: string;
+    firstimage: string;
+    firstimage2: string;
+    cpyrhtDivCd: string;
+    mapx: string;
+    mapy: string;
+    mlevel: string;
+    modifiedtime: string;
+    sigungucode: string;
+    tel: string;
+    title: string;
+    zipcode: string;
+  }[];
+}
+
+const TravelCardBox = ({ travelList }: TravelCardBoxTypes) => {
   return (
     <div>
       <ul className="grid mt-5 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {test.map((item): any => {
+        {travelList?.map((item): any => {
           return <TravelCard key={item.title} {...item} />;
         })}
       </ul>
-      ;
     </div>
   );
 };
