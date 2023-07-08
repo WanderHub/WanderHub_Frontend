@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 import Card from '@components/accompany/Card';
 import { AccompanyDataType } from '@/types/accompanyType';
 
-const tabSlideSet = {
+const cardSlideSet = {
   dots: true,
   speed: 500,
   slidesToShow: 4,
@@ -48,7 +48,7 @@ interface CardSlidePropsType {
 const CardSlide = ({ list }: CardSlidePropsType) => {
   return (
     <div>
-      <Slider {...tabSlideSet}>
+      <Slider {...cardSlideSet}>
         {list?.map(item => {
           return (
             <div key={item.id}>
