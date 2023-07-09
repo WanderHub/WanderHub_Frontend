@@ -1,7 +1,10 @@
 import React from 'react';
 import { travelCategory } from '@/constant/TravelCodes';
+import useRouter from '@/hooks/useRouter';
+import { TravelListType } from '@/types/travelDataType';
 
-const TravelCard = (props: Record<string, string>) => {
+const TravelCard = (props: TravelListType) => {
+  const { goTo } = useRouter();
   const findCateName = (cateCode: string) => {
     const idx = travelCategory.findIndex(item => item.code === cateCode);
     if (idx === -1) return '';
@@ -9,7 +12,10 @@ const TravelCard = (props: Record<string, string>) => {
   };
 
   return (
-    <li className="w-64 h-full m-auto overflow-hidden shadow-lg rounded-2xl">
+    <li
+      onClick={() => goTo(props.contentid)}
+      className="w-64 h-full m-auto overflow-hidden shadow-lg rounded-2xl cursor-pointer"
+    >
       {props.firstimage ? (
         <div className="rounded-t-lg h-[50%] w-full">
           <img alt={props.title} src={props.firstimage} className="w-full h-full" />
