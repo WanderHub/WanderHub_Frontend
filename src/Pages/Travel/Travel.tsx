@@ -8,6 +8,7 @@ import RegionBtns from '@components/travel/main/RegionBtns';
 import TravelCardBox from '@components/travel/TravelCardBox';
 import useGetTravelList from '@/hooks/queryHooks/useGetTravelList';
 import Spinner from '@components/common/Spinner';
+import PlaceTypeBtn from '@components/travel/main/PlaceTypeBtn';
 
 const Travel = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -19,6 +20,7 @@ const Travel = () => {
       <Header setOpenModal={setOpenModal} />
       <Container>
         <RegionBtns />
+        <PlaceTypeBtn />
         {isLoading && <Spinner />}
         {data && <TravelCardBox travelList={data.items.item} />}
       </Container>

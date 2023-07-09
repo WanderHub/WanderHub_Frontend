@@ -1,5 +1,5 @@
 import React from 'react';
-import { travelCategory } from '@/constant/categoryCode';
+import { travelCategory } from '@/constant/TravelCodes';
 
 const TravelCard = (props: Record<string, string>) => {
   const findCateName = (cateCode: string) => {

@@ -9,7 +9,10 @@ const useGetTravelList = (code: string) => {
         const response = await TravelApi.get(
           `/areaBasedList1?serviceKey=${
             import.meta.env.VITE_TRAVEL_API_KEY
-          }&MobileOS=WIN&MobileApp=AppTest&_type=json&numOfRows=20&${code.replace('?', '')}`,
+          }&MobileOS=WIN&MobileApp=AppTest&_type=json&numOfRows=20&arrange=Q&${code.replace(
+            '?',
+            '',
+          )}`,
         );
         return response.data.response.body;
       } catch (error) {

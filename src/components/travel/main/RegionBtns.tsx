@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { regionCode } from '@/constant/RegionCode';
+import { regionCode } from '@/constant/TravelCodes';
 import useRouter from '@/hooks/useRouter';
 import Slider from 'react-slick';
 import { useLocation } from 'react-router-dom';
