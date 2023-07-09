@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-const Pagenation = () => {
+interface PaginationTypes {
+  totalPages: number;
+  curPage: number;
+  handlePageNation: (page: number) => void;
+}
+
+const Pagenation = ({ totalPages, curPage, handlePageNation }: PaginationTypes) => {
   const [pageStartNum, setPageStartNum] = useState(1);
-  const [curPage, setCurPage] = useState(1);
+
+  useEffect(() => {
+    const pageEndNum = pageStartNum + 9;
+    if (curPage < pageStartNum || curPage > pageEndNum) {
+      setPageStartNum(Math.floor((curPage - 1) / 10) * 10 + 1);
+    }
+  }, [curPage]);
+
+  const pageEndNum = Math.min(pageStartNum + 9, totalPages);
+
   return (
     <div className="flex flex-col items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">
       <div className="flex items-center">
@@ -17,39 +32,35 @@ const Pagenation = () => {
           onClick={() => {
             if (pageStartNum !== 1) {
               setPageStartNum(pageStartNum - 10);
-              setCurPage(pageStartNum - 10);
             }
           }}
         >
           <IoIosArrowBack />
         </button>
-        {Array(10)
-          .fill(null)
-          .map((_, i) => {
+        {Array.from({ length: pageEndNum - pageStartNum + 1 }, (_, i) => i + pageStartNum).map(
+          pageNum => {
             return (
               <button
-                key={i * pageStartNum}
+                key={pageNum}
                 className={
-                  curPage === i + 1 * pageStartNum
+                  curPage === pageNum
                     ? 'w-full px-4 py-2 text-base text-gray-600 bg-primary border'
                     : 'w-full px-4 py-2 text-base text-gray-600 bg-white border hover:bg-gray-400'
                 }
-                onClick={() => {
-                  setCurPage(i + 1 * pageStartNum);
-                  console.log(i + 1 * pageStartNum);
-                }}
+                onClick={() => handlePageNation(pageNum)}
               >
-                {i + 1 * pageStartNum}
+                {pageNum}
               </button>
             );
-          })}
-
+          },
+        )}
         <button
           type="button"
           className="w-full p-3 text-base text-gray-600 bg-white border-t border-b border-r rounded-r-xl hover:bg-gray-400"
           onClick={() => {
-            setPageStartNum(pageStartNum + 10);
-            setCurPage(pageStartNum + 10);
+            if (pageStartNum + 10 <= totalPages) {
+              setPageStartNum(pageStartNum + 10);
+            }
           }}
         >
           <IoIosArrowForward />

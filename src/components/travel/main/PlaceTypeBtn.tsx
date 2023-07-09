@@ -10,13 +10,10 @@ const PlaceTypeBtn = () => {
 
   const handleLocation = (code: string) => {
     const beforeQuery = querystringToObject(location.search);
-    if ('contentTypeId' in beforeQuery) {
-      if (beforeQuery.contentTypeId === code) {
-        delete beforeQuery.contentTypeId;
-      } else {
-        beforeQuery.contentTypeId = code;
-      }
+    if ('contentTypeId' in beforeQuery && beforeQuery.contentTypeId === code) {
+      delete beforeQuery.contentTypeId;
     } else {
+      beforeQuery.pageNo = '1';
       beforeQuery.contentTypeId = code;
     }
     console.log(objectToQuerystring(beforeQuery));
