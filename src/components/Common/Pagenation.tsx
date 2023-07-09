@@ -56,7 +56,11 @@ const Pagenation = ({ totalPages, curPage, handlePageNation }: PaginationTypes) 
         )}
         <button
           type="button"
-          className="w-full p-3 text-base text-gray-600 bg-white border-t border-b border-r rounded-r-xl hover:bg-gray-400"
+          className={
+            pageStartNum + 10 <= totalPages
+              ? 'w-full p-3 text-base text-gray-600 bg-white border-t border-b border-r rounded-r-xl hover:bg-gray-400'
+              : 'w-full p-3 text-base text-gray-300 bg-gray-100 border-t border-b border-r rounded-r-xl cursor-not-allowed'
+          }
           onClick={() => {
             if (pageStartNum + 10 <= totalPages) {
               setPageStartNum(pageStartNum + 10);
