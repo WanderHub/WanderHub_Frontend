@@ -80,7 +80,7 @@ const Writing = () => {
                   return (
                     <div key={region}>
                       <li
-                        className="p-2 first:rounded-t-lg last:rounded-b-lg hover:bg-blue-100"
+                        className="p-2 hover:bg-blue-100"
                         onClick={e => handleSelectRegion(e, region)}
                       >
                         {region}
