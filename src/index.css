@@ -51,6 +51,9 @@
 .slick-arrow:before {
   color: #6c9976;
 }
+.slick-slide > div {
+  margin: 0 5px;
+}
 .slick-slide li {
   list-style: none;
 }

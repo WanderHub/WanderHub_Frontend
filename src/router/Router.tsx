@@ -10,6 +10,8 @@ import NotFound from '@/pages/NotFound.tsx/NotFound';
 import MyPage from '@pages/MyPage/MyPage';
 import Redirection from '@/Pages/Login/Redirection';
 import LoginTest from '@/Pages/Login/LoginTest';
+import Travel from '@pages/Travel/Travel';
+import TravelDetail from '@pages/Travel/TravelDetail';
 
 const Router = () => {
   return (
@@ -23,6 +25,8 @@ const Router = () => {
       <Route path="/community" element={<Comunity />} />
       <Route path="/community/writing" element={<Writing />} />
       <Route path="/oauth/redirect" element={<Redirection />} />
+      <Route path="/travel" element={<Travel />} />
+      <Route path="/travel/:contentId" element={<TravelDetail />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

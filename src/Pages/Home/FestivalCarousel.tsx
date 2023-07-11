@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import TravelAPI from '@/api/TravelAPI';
+import TravelApi from '@/api/TravelApi';
 import { FestivalType } from '@/types/festivalType';
 
 const FestivalCarousel = () => {
@@ -20,7 +20,7 @@ const FestivalCarousel = () => {
   useEffect(() => {
     async function callFestivalAPI() {
       const startDate = getTodayDate();
-      const res = await TravelAPI.get(
+      const res = await TravelApi.get(
         `/searchFestival1?_type=json&MobileOS=ETC&MobileApp=WanderHub&eventStartDate=${startDate}&serviceKey=${serviceKey}`,
       );
       setFestivalList(res.data.response.body.items.item);
