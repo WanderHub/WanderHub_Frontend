@@ -3,12 +3,26 @@ import Logo from '@assets/white_bg_logo.png';
 import GoogleSymbol from '@assets/google_symbol.png';
 import KaKaoSymbol from '@assets/kakao_symbol.png';
 import XMarkIcon from '@assets/cross.png';
+import axios from 'axios';
+
+const instance = axios.create({
+  baseURL: 'http://ec2-13-124-90-227.ap-northeast-2.compute.amazonaws.com:8080',
+  timeout: 1000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true,
+});
 
 export interface ModalProps {
   setOpenModal: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const Modal = ({ setOpenModal }: ModalProps) => {
+  const handleLogin = () => {
+    const res = instance.get('/oauth2/authorization/kakao');
+    console.log(res);
+  };
   return (
     <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -49,6 +63,7 @@ const Modal = ({ setOpenModal }: ModalProps) => {
                 <button
                   className="mt-3 flex justify-center w-full h-14 rounded-lg py-3 bg-kakao hover:bg-neutral-400"
                   type="button"
+                  onClick={handleLogin}
                 >
                   <img src={KaKaoSymbol} alt="GoogleSymbol" className="h-full" />
                   <span className="px-3 font-semibold mt-1">카카오 계정 로그인</span>

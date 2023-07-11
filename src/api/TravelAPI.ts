@@ -1,16 +1,17 @@
 import axios from 'axios';
+import { TRAVEL } from './BASEURL';
 
-const TravelApi = axios.create({
-  baseURL: 'http://apis.data.go.kr/B551011/KorService1',
+const TravelAPI = axios.create({
+  baseURL: TRAVEL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-TravelApi.interceptors.response.use(
+TravelAPI.interceptors.response.use(
   response => {
     if (response.status !== 200) {
-      console.log('api error');
+      console.log('error');
     }
     return response;
   },
@@ -19,4 +20,4 @@ TravelApi.interceptors.response.use(
   },
 );
 
-export default TravelApi;
+export default TravelAPI;
