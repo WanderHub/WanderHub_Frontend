@@ -21,3 +21,11 @@ export const querystringToObject = (queryString: string): QueryToObjType => {
   }
   return queryObject;
 };
+export const objectToQuerystring = (queryObject: QueryToObjType): string => {
+  const keys = Object.keys(queryObject);
+  if (keys.length === 0) return '';
+
+  const queryString = keys.map(key => `${key}=${queryObject[key]}`).join('&');
+
+  return `?${queryString}`;
+};
