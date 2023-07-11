@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import data from '../../data.json';
+import TravelAPI from '@/api/TravelAPI';
+import { FestivalType } from '@/types/festivalType';
 
 const FestivalCarousel = () => {
+  const [getFestivalList, setFestivalList] = useState([]);
+  const getTodayDate = () => {
+    const today = new Date();
+    const month =
+      today.getMonth() + 1 < 10 ? '0' + String(today.getMonth() + 1) : String(today.getMonth() + 1);
+    return String(today.getFullYear()) + month + String(today.getDate());
+  };
+
+  const serviceKey =
+    '6NgKc325juZcRIVs8u%2FV2td%2FHDo63%2F8NXHXQgY5vWsaGOTo0%2BQNR1Jz1mvWiagHfdIlz%2Fg8dTgaVKQxnfpF9aQ%3D%3D';
+
+  useEffect(() => {
+    async function callFestivalAPI() {
+      const startDate = getTodayDate();
+      const res = await TravelAPI.get(
+        `/searchFestival1?_type=json&MobileOS=ETC&MobileApp=WanderHub&eventStartDate=${startDate}&serviceKey=${serviceKey}`,
+      );
+      setFestivalList(res.data.response.body.items.item);
+    }
+    callFestivalAPI();
+  }, []);
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -15,19 +38,23 @@ const FestivalCarousel = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="flex-col w-2/3 mt-10">
-        <Slider className="h-72 bg-amber-50" {...settings}>
-          {data.festival.map(e => {
+      <div className="flex-col w-[70%] mt-10">
+        <Slider className="h-80" {...settings}>
+          {getFestivalList.map((e: FestivalType) => {
             return (
-              <div key="e" className="w-full h-full">
-                <img src={e.imgSrc} alt={e.name} className="float-left w-1/3 h-72 bg-primary" />
-                <div className="container p-6 px-6 mx-auto bg-white dark:bg-gray-800">
-                  <div className="mb-16 text-center">
+              <div key="e" className="w-full h-full mx-10">
+                <img
+                  src={e.firstimage}
+                  alt={e.title}
+                  className="float-left w-1/3 h-72 bg-primary mr-20"
+                />
+                <div className="w-full container p-6 mx-auto bg-white dark:bg-gray-800">
+                  <div className="mb-6 text-center">
                     <h2 className="text-base font-semibold tracking-wide text-indigo-600 uppercase">
                       Festival
                     </h2>
                     <p className="mt-1 text-2xl font-extrabold leading-8 tracking-tight text-gray-900 dark:text-white">
-                      {e.name}
+                      {e.title}
                     </p>
                   </div>
                   <div className="flex flex-wrap dark:text-white">
@@ -46,7 +73,7 @@ const FestivalCarousel = () => {
                         <div className="ml-4 text-xl">Period</div>
                       </div>
                       <p className="leading-loose text-gray-500 dark:text-gray-200 text-md">
-                        {e.startDate} - {e.endDate}
+                        {e.eventstartdate} - {e.eventenddate}
                       </p>
                     </div>
                     <div className="w-full p-5 md:w-1/2 lg:w-1/3 lg:border-r">
@@ -64,7 +91,7 @@ const FestivalCarousel = () => {
                         <div className="ml-4 text-xl">Location</div>
                       </div>
                       <p className="leading-loose text-gray-500 dark:text-gray-200 text-md">
-                        {e.location}
+                        {e.addr1}
                       </p>
                     </div>
                     <div className="w-full p-5 md:w-1/2 md:border-r lg:w-1/3 lg:border-r-0">
