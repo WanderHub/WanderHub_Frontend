@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ViewsIcon from '@assets/viewsIcon.png';
+import WanderHubAPI from '@/api/WanderHubAPI';
 
 const PostList = () => {
+  useEffect(() => {
+    async function getPostAll() {
+      const res = await WanderHubAPI.get('/v1/community?page=1&size=12');
+      console.log(res);
+    }
+    getPostAll();
+  }, []);
+
   return (
     <div className="border-t">
       <div className="relative border-b p-5 hover:bg-zinc-100">

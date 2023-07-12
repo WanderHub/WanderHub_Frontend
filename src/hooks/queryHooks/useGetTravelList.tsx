@@ -1,4 +1,4 @@
-import { TravelApi } from '@/api/TravelApi';
+import TravelApi from '@/api/TravelApi';
 import { useQuery } from 'react-query';
 
 const useGetTravelList = (code: string) => {

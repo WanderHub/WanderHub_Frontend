@@ -22,6 +22,7 @@ const SideBar = () => {
     '경상남도',
     '제주도',
   ];
+
   return (
     <div className="float-left h-screen w-72dark:bg-gray-800">
       <div className="flex flex-col sm:flex-row sm:justify-around">

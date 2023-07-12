@@ -13,7 +13,7 @@ const AccompanyCarousel = () => {
   };
   return (
     <div className="flex justify-center pb-[47px]">
-      <div className="flex-col w-2/3">
+      <div className="flex-col w-[70%]">
         <Title title="같이 여행할 친구를 찾아봐요!" />
         <Slider className="h-72" {...settings}>
           {data.festival.map(e => {
