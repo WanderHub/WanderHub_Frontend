@@ -12,6 +12,7 @@ import Redirection from '@/Pages/Login/Redirection';
 import LoginTest from '@/Pages/Login/LoginTest';
 import Travel from '@pages/Travel/Travel';
 import TravelDetail from '@pages/Travel/TravelDetail';
+import CommunityDetail from '@/Pages/Community/Detail/CommunityDetail';
 
 const Router = () => {
   return (
@@ -24,6 +25,7 @@ const Router = () => {
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/community" element={<Comunity />} />
       <Route path="/community/writing" element={<Writing />} />
+      <Route path="/community/detail" element={<CommunityDetail />} />
       <Route path="/oauth/redirect" element={<Redirection />} />
       <Route path="/travel" element={<Travel />} />
       <Route path="/travel/:contentId" element={<TravelDetail />} />

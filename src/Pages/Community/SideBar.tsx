@@ -23,6 +23,10 @@ const SideBar = () => {
     '제주도',
   ];
 
+  const showByRegionPostList = (e: React.MouseEvent<HTMLElement>, region: string) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="float-left h-screen w-72dark:bg-gray-800">
       <div className="flex flex-col sm:flex-row sm:justify-around">
@@ -40,13 +44,13 @@ const SideBar = () => {
               </p>
               {metroCity.map(city => {
                 return (
-                  <a
+                  <button
                     className="flex items-center justify-start p-2 my-4 font-thin text-gray-500 transition-colors duration-200 hover:text-gray-800 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
-                    href="#"
+                    onClick={e => showByRegionPostList(e, city.slice(0, 2))}
                     key={city}
                   >
                     <span className="mx-4 font-normal text-md">{city}</span>
-                  </a>
+                  </button>
                 );
               })}
             </div>
@@ -56,26 +60,26 @@ const SideBar = () => {
               </p>
               {doCity.map(city => {
                 return (
-                  <a
+                  <button
                     className="flex items-center justify-start p-2 my-4 font-thin text-gray-500 transition-colors duration-200 hover:text-gray-800 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
-                    href="#"
+                    onClick={e => showByRegionPostList(e, city)}
                     key={city}
                   >
                     <span className="mx-4 font-normal text-md">{city}</span>
-                  </a>
+                  </button>
                 );
               })}
             </div>
-            <div>
+            <div className="pb-14">
               <p className="w-full pb-2 mb-4 ml-2 font-normal text-gray-300 border-b-2 border-gray-100 text-md">
                 특별자치시
               </p>
-              <a
-                className="flex items-center justify-start p-2 my-4 font-thin text-gray-500 transition-colors duration-200 hover:text-gray-800 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
-                href="#"
+              <button
+                className="w-full flex items-center justify-start p-2 my-4 font-thin text-gray-500 transition-colors duration-200 hover:text-gray-800 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
+                onClick={e => showByRegionPostList(e, '세종')}
               >
-                <span className="mx-4 mb-14 font-normal text-md">세종시</span>
-              </a>
+                <span className="mx-4 font-normal text-md">세종시</span>
+              </button>
             </div>
           </nav>
         </div>

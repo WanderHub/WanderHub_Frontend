@@ -7,9 +7,8 @@ import Board from '@pages/Community/Board';
 const Community = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <div className="">
+    <div>
       <Header setOpenModal={setOpenModal} />
-      <SideBar />
       <Board />
       {openModal ? <Modal setOpenModal={setOpenModal} /> : ''}
     </div>
