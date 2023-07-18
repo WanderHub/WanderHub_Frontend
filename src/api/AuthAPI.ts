@@ -3,7 +3,6 @@ import { WANDERHUB } from '@/api/BASEURL';
 
 const instance = axios.create({
   headers: {
-    baseURL: WANDERHUB,
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
   },

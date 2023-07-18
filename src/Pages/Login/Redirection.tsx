@@ -18,6 +18,7 @@ const Redirection = () => {
 
   const patchNickName = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+
     const postData = { name: '', nickName, local: '' };
     console.log(postData);
     const res = await AuthAPI.patch('/v1/members', postData);
