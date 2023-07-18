@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SideBar from './SideBar';
 import Header from '@components/Common/Header';
 import Modal from '@pages/Login/Modal';
 import Board from '@pages/Community/Board';

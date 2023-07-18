@@ -25,6 +25,7 @@ const SideBar = () => {
 
   const showByRegionPostList = (e: React.MouseEvent<HTMLElement>, region: string) => {
     e.preventDefault();
+    console.log(region);
   };
 
   return (

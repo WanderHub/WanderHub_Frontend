@@ -6,6 +6,7 @@ import ViewIcon from '@assets/viewsIcon.png';
 
 const CommunityDetail = () => {
   const [openModal, setOpenModal] = useState(false);
+
   return (
     <div>
       <Header setOpenModal={setOpenModal} />
@@ -34,7 +35,6 @@ const CommunityDetail = () => {
           <div>본문</div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

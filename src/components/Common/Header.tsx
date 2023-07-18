@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '@assets/logo.png';
 import { useLocation } from 'react-router-dom';
 import { ModalProps } from '../../pages/Login/Modal';
@@ -21,6 +21,23 @@ const LinkList = [
 
 const Header = ({ setOpenModal }: ModalProps) => {
   const location = useLocation();
+  const [assignBtn, setAssignBtn] = useState('');
+  const clickLoginBtn = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+
+    if (localStorage.getItem('accessToken')) {
+      localStorage.removeItem('accessToken');
+      setAssignBtn('로그인');
+      setOpenModal(false);
+    } else {
+      setOpenModal(true);
+    }
+  };
+
+  useEffect(() => {
+    localStorage.getItem('accessToken') ? setAssignBtn('로그아웃') : setAssignBtn('로그인');
+  });
+
   return (
     <header className="flex bg-primary py-4 border-b border-gray-300 h-[10vh]">
       <nav className="container mx-auto flex items-center justify-between">
@@ -49,12 +66,12 @@ const Header = ({ setOpenModal }: ModalProps) => {
         </ul>
         <div>
           <button
-            onClick={() => setOpenModal(true)}
+            onClick={e => clickLoginBtn(e)}
             className={
               'text-gray-300 hover:text-white border border-gray-300 rounded-full px-4 py-2'
             }
           >
-            로그인
+            {assignBtn}
           </button>
         </div>
       </nav>

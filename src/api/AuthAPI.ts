@@ -1,18 +1,38 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { WANDERHUB } from '@/api/BASEURL';
 
-export const AuthAPI = axios.create({
-  baseURL: WANDERHUB,
+const instance = axios.create({
   headers: {
+    baseURL: WANDERHUB,
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   },
+  withCredentials: true,
 });
 
-AuthAPI.interceptors.response.use(response => {
-  if (response.data.access_token !== undefined) {
-    localStorage.setItem('access_token', response.data.access_token);
+instance.interceptors.request.use(request => {
+  request.baseURL = WANDERHUB;
+  const accessToken = localStorage.getItem('accessToken');
+  if (accessToken !== null) {
+    request.headers.authorization = `Bearer ${accessToken}`;
   }
+  return request;
+});
+
+instance.interceptors.response.use(response => {
+  const accessToken = localStorage.getItem('accessToken');
+  response.headers = {
+    authorization: `Bearer ${accessToken}`,
+  };
   return response;
 });
+
+const AuthAPI = {
+  get: (url: string) => instance.get(url),
+  delete: (url: string) => instance.delete(url),
+  patch: (url: string, data: object) => instance.patch(url, data),
+  post: (url: string, data: object, config?: AxiosRequestConfig) =>
+    instance.post(url, data, config),
+};
 
 export default AuthAPI;
