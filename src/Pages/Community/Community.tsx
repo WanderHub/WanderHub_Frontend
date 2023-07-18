@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SideBar from './SideBar';
 import Header from '@components/Common/Header';
 import Modal from '@pages/Login/Modal';
 import Board from '@pages/Community/Board';
@@ -7,9 +6,8 @@ import Board from '@pages/Community/Board';
 const Community = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <div className="">
+    <div>
       <Header setOpenModal={setOpenModal} />
-      <SideBar />
       <Board />
       {openModal ? <Modal setOpenModal={setOpenModal} /> : ''}
     </div>

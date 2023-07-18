@@ -19,6 +19,14 @@ export default defineConfig(({ mode }) => {
     ],
     server: {
       port: 3000,
+      // proxy: {
+      //   '/v1': {
+      //     target: 'http://ec2-3-34-80-242.ap-northeast-2.compute.amazonaws.com:8080/',
+      //     changeOrigin: true,
+      //     secure: false,
+      //     ws: true,
+      //   },
+      // },
     },
     resolve: {
       alias: [

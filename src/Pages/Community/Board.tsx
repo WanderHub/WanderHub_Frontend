@@ -4,9 +4,11 @@ import PostList from '@pages/Community/PostList';
 
 const Board = () => {
   return (
-    <div className="flex flex-col px-20">
-      <Button />
-      <PostList />
+    <div className="flex justify-center">
+      <div className="flex flex-col w-[70%]">
+        <Button />
+        <PostList />
+      </div>
     </div>
   );
 };
