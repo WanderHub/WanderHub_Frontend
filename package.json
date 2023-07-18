@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy":"http://ec2-3-34-80-242.ap-northeast-2.compute.amazonaws.com:8080",
+  "proxy": "http://ec2-3-34-80-242.ap-northeast-2.compute.amazonaws.com:8080",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
