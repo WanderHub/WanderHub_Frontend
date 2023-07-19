@@ -2,15 +2,16 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { WANDERHUB } from '@/api/BASEURL';
 
 const instance = axios.create({
+  baseURL: '/v1',
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Origin':
+    //   'http://ec2-3-34-80-242.ap-northeast-2.compute.amazonaws.com:8080',
   },
   withCredentials: true,
 });
 
 instance.interceptors.request.use(request => {
-  request.baseURL = WANDERHUB;
   const accessToken = localStorage.getItem('accessToken');
   if (accessToken !== null) {
     request.headers.authorization = `Bearer ${accessToken}`;

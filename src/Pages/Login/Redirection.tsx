@@ -21,7 +21,8 @@ const Redirection = () => {
 
     const postData = { name: '', nickName, local: '' };
     console.log(postData);
-    const res = await AuthAPI.patch('/v1/members', postData);
+    const res = await AuthAPI.patch('/members', postData);
+
     if (res.status === 200) {
       window.alert('닉네임이 설정되었습니다.');
       navigate('/');
