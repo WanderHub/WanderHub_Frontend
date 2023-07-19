@@ -3,12 +3,12 @@ import { WANDERHUB } from '@/api/BASEURL';
 
 const instance = axios.create({
   baseURL: '/v1',
+  // baseURL: WANDERHUB,
   headers: {
     'Content-Type': 'application/json',
-    // 'Access-Control-Allow-Origin':
-    //   'http://ec2-3-34-80-242.ap-northeast-2.compute.amazonaws.com:8080',
+    // 'Access-Control-Allow-Origin': '*',
   },
-  withCredentials: true,
+  // withCredentials: true,
 });
 
 instance.interceptors.request.use(request => {
@@ -16,10 +16,16 @@ instance.interceptors.request.use(request => {
   if (accessToken !== null) {
     request.headers.authorization = `Bearer ${accessToken}`;
   }
+  console.log(1);
+  console.log(request);
+  console.log(accessToken);
+
   return request;
 });
 
 instance.interceptors.response.use(response => {
+  console.log(2);
+
   const accessToken = localStorage.getItem('accessToken');
   response.headers = {
     authorization: `Bearer ${accessToken}`,

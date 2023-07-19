@@ -3,11 +3,31 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { WANDERHUB } from '@/api/BASEURL';
 
 const instance = axios.create({
-  baseURL: WANDERHUB,
+  baseURL: '/v1',
   headers: {
     'Content-Type': 'application/json',
+    // 'Access-Control-Allow-Origin': '*',
   },
-  withCredentials: true,
+  // withCredentials: true,
+});
+
+instance.interceptors.request.use(request => {
+  console.log(1);
+  console.log(request);
+  const accessToken = localStorage.getItem('accessToken');
+  if (accessToken !== null) {
+    request.headers.authorization = `Bearer ${accessToken}`;
+  }
+  return request;
+});
+
+instance.interceptors.response.use(response => {
+  console.log(2);
+  const accessToken = localStorage.getItem('accessToken');
+  response.headers = {
+    authorization: `Bearer ${accessToken}`,
+  };
+  return response;
 });
 
 const WanderHubAPI = {
