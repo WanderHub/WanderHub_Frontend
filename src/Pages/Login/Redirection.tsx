@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthAPI from '@/api/AuthAPI';
+import WanderHubAPI from '@/api/WanderHubAPI';
 
 const Redirection = () => {
   const code = new URL(window.location.href);
@@ -21,7 +22,8 @@ const Redirection = () => {
 
     const postData = { name: '', nickName, local: '' };
     console.log(postData);
-    const res = await AuthAPI.patch('/v1/members', postData);
+    const res = await WanderHubAPI.patch('/members', postData);
+
     if (res.status === 200) {
       window.alert('닉네임이 설정되었습니다.');
       navigate('/');

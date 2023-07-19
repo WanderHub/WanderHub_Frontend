@@ -8,7 +8,7 @@ const PostList = () => {
 
   useEffect(() => {
     async function getPostAll() {
-      const res = await WanderHubAPI.get('/v1/community?page=1&size=12');
+      const res = await WanderHubAPI.get('/community?page=1&size=12');
       console.log(res);
     }
     getPostAll();

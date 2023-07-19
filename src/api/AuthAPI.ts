@@ -2,15 +2,13 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { WANDERHUB } from '@/api/BASEURL';
 
 const instance = axios.create({
+  baseURL: '/v1',
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
   },
-  withCredentials: true,
 });
 
 instance.interceptors.request.use(request => {
-  request.baseURL = WANDERHUB;
   const accessToken = localStorage.getItem('accessToken');
   if (accessToken !== null) {
     request.headers.authorization = `Bearer ${accessToken}`;
