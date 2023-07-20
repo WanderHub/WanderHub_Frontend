@@ -6,9 +6,7 @@ const instance = axios.create({
   baseURL: '/v1',
   headers: {
     'Content-Type': 'application/json',
-    // 'Access-Control-Allow-Origin': '*',
   },
-  // withCredentials: true,
 });
 
 instance.interceptors.request.use(request => {
