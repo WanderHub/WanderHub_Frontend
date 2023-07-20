@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Footer from '@components/common/Footer';
-import Header from '@components/common/Header';
-import Container from '@components/common/Container';
-import Modal from '@/pages/Login/Modal';
+import Footer from '@components/Common/Footer';
+import Header from '@components/Common/Header';
+import Container from '@components/Common/Container';
+import Modal from '@pages/Login/Modal';
 import { useLocation } from 'react-router-dom';
 import RegionBtns from '@components/travel/main/RegionBtns';
 import TravelCardBox from '@components/travel/TravelCardBox';
 import useGetTravelList from '@/hooks/queryHooks/useGetTravelList';
-import Spinner from '@components/common/Spinner';
+import Spinner from '@components/Common/Spinner';
 import PlaceTypeBtn from '@components/travel/main/PlaceTypeBtn';
-import Pagenation from '@components/common/Pagenation';
+import Pagenation from '@components/Common/Pagenation';
 import { objectToQuerystring, querystringToObject } from '@/utils/commonUtil';
 import useRouter from '@/hooks/useRouter';
 
@@ -18,7 +18,7 @@ const Travel = () => {
   const [curPage, setCurPage] = useState<number>(1);
   const { goTo } = useRouter();
   const location = useLocation();
-  const { data, isLoading, error } = useGetTravelList(location.search);
+  const { data, isLoading } = useGetTravelList(location.search);
   const handlePageNation = (page: number) => {
     console.log(page);
     setCurPage(page);
