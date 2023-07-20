@@ -3,7 +3,6 @@ import { WANDERHUB } from '@/api/BASEURL';
 
 const instance = axios.create({
   baseURL: '/v1',
-  // baseURL: WANDERHUB,
   headers: {
     'Content-Type': 'application/json',
     // 'Access-Control-Allow-Origin': '*',
@@ -16,16 +15,10 @@ instance.interceptors.request.use(request => {
   if (accessToken !== null) {
     request.headers.authorization = `Bearer ${accessToken}`;
   }
-  console.log(1);
-  console.log(request);
-  console.log(accessToken);
-
   return request;
 });
 
 instance.interceptors.response.use(response => {
-  console.log(2);
-
   const accessToken = localStorage.getItem('accessToken');
   response.headers = {
     authorization: `Bearer ${accessToken}`,
