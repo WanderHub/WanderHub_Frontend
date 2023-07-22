@@ -3,7 +3,7 @@ import Logo from '@assets/white_bg_logo.png';
 import KaKaoSymbol from '@assets/kakao_symbol.png';
 import XMarkIcon from '@assets/cross.png';
 import { useRecoilState } from 'recoil';
-import { modalIsOpenAtom } from '@/recoil/login/atoms';
+import { modalIsOpenAtom } from '@/recoil/login/loginModalAtoms';
 
 const Modal = () => {
   const [modalIsOpen, setModalIsOpen] = useRecoilState<boolean>(modalIsOpenAtom);

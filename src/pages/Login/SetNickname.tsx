@@ -17,6 +17,7 @@ const SetNickname = () => {
 
     if (res.status === 200) {
       window.alert('닉네임이 설정되었습니다.');
+      //res.data -> 전역 유저정보 저장
       navigate('/');
     } else {
       console.log(res);

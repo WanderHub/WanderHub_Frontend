@@ -3,7 +3,7 @@ import Logo from '@assets/logo.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { modalIsOpenAtom } from '@/recoil/login/atoms';
+import { modalIsOpenAtom } from '@/recoil/login/loginModalAtoms';
 
 const LinkList = [
   {
