@@ -36,7 +36,7 @@ const Modal = () => {
                         소셜 로그인
                       </h2>
                     </div>
-                    <p className="mb-large text-base text-gray-900 mb-[96px]">
+                    <p className="mb-large text-base text-gray-900 mb-[98px]">
                       동행을 찾아 함께 여행해 보세요 :)
                     </p>
                     <button
