@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '@assets/logo.png';
 import { useLocation } from 'react-router-dom';
-import { ModalProps } from '@pages/Login/Modal';
 import { Link } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { modalIsOpenAtom } from '@/recoil/login/atoms';
 
 const LinkList = [
   {
@@ -19,19 +20,20 @@ const LinkList = [
   },
 ];
 
-const Header = ({ setOpenModal }: ModalProps) => {
+const Header = () => {
   const location = useLocation();
   const [assignBtn, setAssignBtn] = useState('');
+  const setModalIsOpen = useSetRecoilState(modalIsOpenAtom);
+
   const clickLoginBtn = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
     if (localStorage.getItem('accessToken')) {
       localStorage.removeItem('accessToken');
       setAssignBtn('로그인');
-      setOpenModal(false);
-    } else {
-      setOpenModal(true);
     }
+
+    setModalIsOpen(cur => !cur);
   };
 
   useEffect(() => {

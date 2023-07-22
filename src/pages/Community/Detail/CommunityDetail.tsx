@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '@components/common/Header';
 import Footer from '@components/common/Footer';
 import MainLogo from '@assets/logo.png';
 import ViewIcon from '@assets/viewsIcon.png';
-import Modal from '@pages/Login/Modal';
 
 const CommunityDetail = () => {
-  const [openModal, setOpenModal] = useState(false);
-
   return (
     <div>
-      <Header setOpenModal={setOpenModal} />
+      <Header />
       <div className="flex flex-col items-center min-h-[80vh]">
         <div className="w-[50%]">
           <div className="mt-20 mb-8 font-medium text-3xl text-gray-800 dark:text-white">
@@ -36,7 +33,6 @@ const CommunityDetail = () => {
           <div>본문</div>
         </div>
       </div>
-      {openModal ? <Modal setOpenModal={setOpenModal} /> : ''}
       <Footer />
     </div>
   );
