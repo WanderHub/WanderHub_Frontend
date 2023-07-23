@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
 import ReactCalendar from '@components/common/ReactCalendar';
 import PostForm from '@components/accompany/post/PostForm';
+import usePostAccompany from '@/hooks/queryHooks/usePostAccompany';
 
 export interface FormDataType {
-  content: string;
-  location: string;
-  maxPeople: number | string;
-  nickname: string;
-  title: string;
+  maxNum: number | string;
+  placeTitle: string;
+  accompanyTitle: string;
+  accompanyContent: string;
+  accompanyLocal: string;
+  coordX: string;
+  coordY: string;
 }
 
 const PostDataHandleBox = () => {
   const [accompanyDate, setAccompanyDate] = useState<string | null>('');
+  const { mutate, isLoading } = usePostAccompany();
+  // const { mutate, isLoading, isError, data, error } = usePostAccompany();
+  console.log(isLoading);
+  const getDate = (date: string | null) => setAccompanyDate(date);
   const handleSubmit = (formData: FormDataType) => {
-    console.log({ ...formData, accompanyDate });
+    const params = { ...formData, accompanyDate };
+    if (accompanyDate) {
+      mutate(params);
+      console.log({ ...formData, accompanyDate });
+    }
   };
-  const getDate = (date: string | null) => {
-    setAccompanyDate(date);
-  };
-
   return (
     <>
       <div className="flex justify-around mt-[2rem] mb-[2rem]">
