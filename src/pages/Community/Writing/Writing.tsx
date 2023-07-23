@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '@components/common/Header';
 import Footer from '@components/common/Footer';
 import AuthAPI from '@/api/AuthAPI';
+import WanderHubAPI from '@/api/WanderHubAPI';
 
 const Writing = () => {
   const [showRegionDropdown, setShowRegionDropdown] = useState<boolean>(false);
@@ -40,7 +41,9 @@ const Writing = () => {
       window.alert('제목과 본문은 필수 입력사항입니다.');
     } else {
       const postData = { ...post, local: curRegion };
-      const res = await AuthAPI.post('/community', postData);
+      console.log(postData);
+      const res = await WanderHubAPI.post('/community', postData);
+      // const res = await WanderHubAPI.post('/community', { postData });
       console.log(res);
     }
   };
