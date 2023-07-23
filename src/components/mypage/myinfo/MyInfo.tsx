@@ -1,5 +1,7 @@
 import React, { useState, useCallback, ChangeEvent } from 'react';
 import { mapList } from '@/constant/MapPath';
+import { useRecoilValue } from 'recoil';
+import { userInfoAtom } from '@/recoil/login/userInfoAtoms';
 
 type UserProfileType = {
   name: string;
@@ -20,6 +22,7 @@ const MyInfo = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [tempUser, setTempUser] = useState<UserProfileType>({ ...user });
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const userInfo = useRecoilValue(userInfoAtom);
 
   const handleEdit = useCallback(() => {
     setIsEditing(!isEditing);
@@ -69,14 +72,18 @@ const MyInfo = () => {
             className="border px-2 py-1"
           />
         ) : (
-          <img src={user.profileImage} alt="Profile" className="w-52 h-52 rounded-full mx-auto" />
+          <img
+            src={userInfo.imgUrl ? userInfo.imUrl : user.profileImage}
+            alt="Profile"
+            className="w-52 h-52 rounded-full mx-auto"
+          />
         )}
         <div
           style={{ justifyItems: 'flex-start', gridTemplateColumns: '30% 80%' }}
           className="grid content-center grid-cols-2 gap-2 w-52 mt-10 mb-[20%]"
         >
           <label className="font-bold text-right">닉네임 : </label>
-          <span>{user.name}</span>
+          <span>{userInfo.nickName}</span>
           <label className="font-bold text-right">지역 : </label>
           {isEditing ? (
             <select
@@ -90,10 +97,10 @@ const MyInfo = () => {
               ))}
             </select>
           ) : (
-            <span>{user.region}</span>
+            <span>{userInfo.local}</span>
           )}
           <label className="font-bold text-right">이메일 : </label>
-          <span>{user.email}</span>
+          <span>{userInfo.email}</span>
         </div>
       </div>
     </>

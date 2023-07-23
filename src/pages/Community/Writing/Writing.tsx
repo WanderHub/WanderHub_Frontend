@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Header from '@components/common/Header';
-import Modal from '@pages/Login/Modal';
 
 const Writing = () => {
-  const [openModal, setOpenModal] = useState(false);
   const [showRegionDropdown, setShowRegionDropdown] = useState<boolean>(false);
   const [curRegion, setCurRegion] = useState('지역 선택');
   const [post, setPost] = useState({ title: '', content: '' });
@@ -43,7 +41,7 @@ const Writing = () => {
 
   return (
     <div>
-      <Header setOpenModal={setOpenModal} />
+      <Header />
       <div className="flex items-center justify-center">
         <div className="w-2/3 mt-10">
           <div className="mb-6 text-2xl text-gray-800 dark:text-white">
@@ -115,7 +113,6 @@ const Writing = () => {
           </button>
         </div>
       </div>
-      {openModal ? <Modal setOpenModal={setOpenModal} /> : ''}
     </div>
   );
 };

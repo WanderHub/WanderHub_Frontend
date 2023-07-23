@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom';
 const PostList = () => {
   const navigate = useNavigate();
 
+  async function getPostAll() {
+    const res = await WanderHubAPI.get('/community?page=1&size=12');
+    console.log(res);
+  }
+
   useEffect(() => {
-    async function getPostAll() {
-      const res = await WanderHubAPI.get('/community?page=1&size=12');
-      console.log(res);
-    }
     getPostAll();
   }, []);
 

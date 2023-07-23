@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Footer from '@components/common/Footer';
 import Header from '@components/common/Header';
 import Container from '@components/common/Container';
 import Title from '@components/accompany/Title';
 import DataHandleBox from '@components/accompany/main/DataHandleBox';
 import useRouter from '@/hooks/useRouter';
-import Modal from '@pages/Login/Modal';
 
 const AccompanyPage = () => {
   const { goTo } = useRouter();
-  const [openModal, setOpenModal] = useState(false);
   return (
     <>
-      <Header setOpenModal={setOpenModal} />
+      <Header />
       <Container>
         <div className="flex justify-end">
           <button
@@ -25,7 +23,6 @@ const AccompanyPage = () => {
         <Title title={'동행'} />
         <DataHandleBox />
       </Container>
-      {openModal ? <Modal setOpenModal={setOpenModal} /> : ''}
       <Footer />
     </>
   );

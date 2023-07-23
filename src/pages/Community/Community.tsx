@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '@components/common/Header';
-import Modal from '@pages/Login/Modal';
 import Board from '@pages/Community/Board';
 
 const Community = () => {
-  const [openModal, setOpenModal] = useState(false);
   return (
     <div>
-      <Header setOpenModal={setOpenModal} />
+      <Header />
       <Board />
-      {openModal ? <Modal setOpenModal={setOpenModal} /> : ''}
     </div>
   );
 };
