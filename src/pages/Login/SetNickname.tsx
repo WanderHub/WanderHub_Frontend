@@ -12,6 +12,11 @@ const SetNickname = () => {
   const navigate = useNavigate();
   const setUserInfo = useSetRecoilState(userInfoAtom);
 
+  const getUserInfo = async () => {
+    const { data } = await AuthAPI.get('/members');
+    setUserInfo(data.data);
+  };
+
   const patchNickName = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
@@ -21,7 +26,7 @@ const SetNickname = () => {
 
       if (res.status === 200) {
         alert('닉네임이 설정되었습니다.');
-        setUserInfo(res.data);
+        getUserInfo();
         navigate('/');
       }
     } catch (error: unknown) {

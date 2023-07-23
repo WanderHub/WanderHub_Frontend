@@ -23,7 +23,7 @@ const Redirection = () => {
       navigate('/');
     } else if (accessToken !== null) {
       localStorage.setItem('accessToken', accessToken);
-      console.log(isNewbie);
+
       if (isNewbie === 'false') {
         getUserInfo();
         navigate('/');

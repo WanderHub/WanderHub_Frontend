@@ -32,9 +32,8 @@ const Header = () => {
     if (localStorage.getItem('accessToken') !== null) {
       localStorage.removeItem('accessToken');
       setAssignBtn('로그인');
-    }
-
-    setModalIsOpen(cur => !cur);
+      setModalIsOpen(false);
+    } else setModalIsOpen(true);
   };
 
   useEffect(() => {
