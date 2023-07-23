@@ -1,30 +1,36 @@
 import React, { useState } from 'react';
 import Logo from '@assets/white_bg_logo.png';
 import XMarkIcon from '@assets/cross.png';
-import WanderHubAPI from '@/api/WanderHubAPI';
+import AuthAPI from '@/api/WanderHubAPI';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { userInfoAtom } from '@/recoil/login/userInfoAtoms';
+import { AxiosError } from 'axios';
 
 const SetNickname = () => {
   const [nickName, setNickName] = useState('');
   const navigate = useNavigate();
+  const setUserInfo = useSetRecoilState(userInfoAtom);
 
   const patchNickName = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    const postData = { name: '', nickName, local: '' };
-    console.log(postData);
-    const res = await WanderHubAPI.patch('/members', postData);
+    try {
+      const postData = { name: '', nickName, local: '' };
+      const res = await AuthAPI.patch('/members', postData);
 
-    if (res.status === 200) {
-      window.alert('닉네임이 설정되었습니다.');
-      //res.data -> 전역 유저정보 저장
-      navigate('/');
-    } else {
-      console.log(res);
-      if (res.data.message === 'Nickname Duplicated') {
-        window.alert('이미 존재하는 닉네임입니다.');
-      } else if (res.data.message === 'Nickname is never update') {
-        window.alert('가입 시 설정한 닉네임은 수정할 수 없습니다.');
+      if (res.status === 200) {
+        alert('닉네임이 설정되었습니다.');
+        setUserInfo(res.data);
+        navigate('/');
+      }
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        if (error.response?.data.message === 'Nickname is never update') {
+          alert('이미 닉네임이 설정된 사용자입니다.');
+        } else if (error.response?.data.message === 'Nickname Duplicated') {
+          alert('이미 사용중인 닉네임입니다.');
+        }
       }
     }
   };

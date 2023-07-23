@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SetNickname from './SetNickname';
 import AuthAPI from '@/api/AuthAPI';
 import { useSetRecoilState } from 'recoil';
 import { userInfoAtom } from '@/recoil/login/userInfoAtoms';
+import SetNickname from './SetNickname';
 
-const Redirection = async () => {
+const Redirection = () => {
   const code = new URL(window.location.href);
   const navigate = useNavigate();
   const accessToken: string | null = code.searchParams.get('access_token');
+
   const isNewbie = code.searchParams.get('newbie');
   const setUserInfo = useSetRecoilState(userInfoAtom);
 
-  if (accessToken !== null) {
-    localStorage.setItem('accessToken', accessToken);
+  const getUserInfo = async () => {
+    const { data } = await AuthAPI.get('/members');
+    setUserInfo(data.data);
+  };
 
-    if (isNewbie === 'false') {
-      const res = await AuthAPI.get('/members');
-      setUserInfo(res.data);
+  useEffect(() => {
+    if (isNewbie === null) {
       navigate('/');
+    } else if (accessToken !== null) {
+      localStorage.setItem('accessToken', accessToken);
+      console.log(isNewbie);
+      if (isNewbie === 'false') {
+        getUserInfo();
+        navigate('/');
+      }
     }
-  }
+  }, []);
 
-  return <>{isNewbie === 'true' && <SetNickname />}</>;
+  return <>{isNewbie !== 'false' && <SetNickname />}</>;
 };
 
 export default Redirection;

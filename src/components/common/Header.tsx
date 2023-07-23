@@ -29,7 +29,7 @@ const Header = () => {
   const clickLoginBtn = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    if (localStorage.getItem('accessToken')) {
+    if (localStorage.getItem('accessToken') !== null) {
       localStorage.removeItem('accessToken');
       setAssignBtn('로그인');
     }

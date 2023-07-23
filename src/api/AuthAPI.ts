@@ -20,6 +20,7 @@ instance.interceptors.response.use(response => {
   response.headers = {
     authorization: `Bearer ${accessToken}`,
   };
+  console.log(response);
   return response;
 });
 
