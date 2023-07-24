@@ -6,8 +6,9 @@ import Title from '@components/accompany/Title';
 import DataHandleBox from '@components/accompany/main/DataHandleBox';
 import useRouter from '@/hooks/useRouter';
 
-const AccompanyPage = () => {
+const Accompany = () => {
   const { goTo } = useRouter();
+
   return (
     <>
       <Header />
@@ -28,4 +29,4 @@ const AccompanyPage = () => {
   );
 };
 
-export default AccompanyPage;
+export default Accompany;
