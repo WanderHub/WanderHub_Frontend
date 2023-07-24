@@ -15,6 +15,11 @@ const PostList = () => {
     setBoardList(res.data.data);
   }
 
+  async function getPostAll() {
+    const res = await WanderHubAPI.get('/community?page=1&size=12');
+    console.log(res);
+  }
+
   useEffect(() => {
     getPostAll();
   }, []);
