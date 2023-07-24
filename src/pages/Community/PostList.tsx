@@ -15,11 +15,6 @@ const PostList = () => {
     setBoardList(res.data.data);
   }
 
-  async function getPostAll() {
-    const res = await WanderHubAPI.get('/community?page=1&size=12');
-    console.log(res);
-  }
-
   useEffect(() => {
     getPostAll();
   }, []);
@@ -36,8 +31,8 @@ const PostList = () => {
             <div className="relative border-b p-4 hover:bg-zinc-100">
               <p className="font-semibold pb-6">{board.title}</p>
               <span className="font-medium text-zinc-500">{board.nickName}</span>
-              <img src={ViewsIcon} width="25px" className="absolute bottom-6 right-16" />
-              <span className="absolute bottom-5 right-10 font-bold text-zinc-500">
+              <img src={ViewsIcon} width="22px" className="absolute bottom-[21px] right-[72px]" />
+              <span className="absolute bottom-4 right-10 font-bold text-zinc-500">
                 {board.viewPoint}
               </span>
             </div>
