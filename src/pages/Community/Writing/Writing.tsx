@@ -2,32 +2,33 @@ import React, { useState } from 'react';
 import Header from '@components/common/Header';
 import Footer from '@components/common/Footer';
 import AuthAPI from '@/api/AuthAPI';
-import WanderHubAPI from '@/api/WanderHubAPI';
+import { useNavigate } from 'react-router-dom';
+
+export const regions: string[] = [
+  '서울',
+  '제주도',
+  '경기도',
+  '강원도',
+  '부산',
+  '울산',
+  '대구',
+  '대전',
+  '광주',
+  '세종',
+  '인천',
+  '충청남도',
+  '충청북도',
+  '경상남도',
+  '경상북도',
+  '전라남도',
+  '전라북도',
+];
 
 const Writing = () => {
   const [showRegionDropdown, setShowRegionDropdown] = useState<boolean>(false);
   const [curRegion, setCurRegion] = useState('지역 선택');
   const [post, setPost] = useState({ title: '', content: '' });
-
-  const regions: string[] = [
-    '서울',
-    '제주도',
-    '경기도',
-    '강원도',
-    '부산',
-    '울산',
-    '대구',
-    '대전',
-    '광주',
-    '세종',
-    '인천',
-    '충청남도',
-    '충청북도',
-    '경상남도',
-    '경상북도',
-    '전라남도',
-    '전라북도',
-  ];
+  const navigate = useNavigate();
 
   const handleSelectRegion = (e: React.MouseEvent<HTMLElement>, region: string) => {
     e.preventDefault();
@@ -41,10 +42,9 @@ const Writing = () => {
       window.alert('제목과 본문은 필수 입력사항입니다.');
     } else {
       const postData = { ...post, local: curRegion };
-      console.log(postData);
-      const res = await WanderHubAPI.post('/community', postData);
-      // const res = await WanderHubAPI.post('/community', { postData });
-      console.log(res);
+      const res = await AuthAPI.post('/community', postData);
+      const boardId = res.data.data.boardId;
+      navigate(`/community/${boardId}`);
     }
   };
 

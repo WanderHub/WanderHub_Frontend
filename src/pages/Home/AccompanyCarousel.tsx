@@ -35,7 +35,7 @@ const AccompanyCarousel = () => {
               <div key="e" className="px-2">
                 <div
                   className="rounded-xl border-2 cursor-pointer"
-                  onClick={() => navigate(`/accompany/:${e.id}`)}
+                  onClick={() => navigate(`/accompany/${e.id}`)}
                 >
                   <div className="h-22 w-full bg-gray-100 py-5 rounded-t-lg">
                     <img
