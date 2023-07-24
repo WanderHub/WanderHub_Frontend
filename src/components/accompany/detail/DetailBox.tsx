@@ -1,34 +1,60 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import KakaoMap from '@components/common/KakaoMap';
 import { useParams } from 'react-router-dom';
 import DetailInfo from './DetailInfo';
 import useGetAccompanyDetail from '@/hooks/queryHooks/useGetAccompanyDetail';
 import Spinner from '@components/common/Spinner';
+import usePostJoinAccompany from '@/hooks/queryHooks/usePostJoinAccompany';
+import useDeleteQuitAccompany from '@/hooks/queryHooks/useDeleteQuitAccompany';
 
 const DetailBox = () => {
   const { accompanyId } = useParams();
   const { data, isLoading } = useGetAccompanyDetail(accompanyId);
+  const joinAccompanyMutation = usePostJoinAccompany();
+  const deleteQuitAccompanyMutation = useDeleteQuitAccompany();
+
+  const handleJoin = (id: string) => {
+    joinAccompanyMutation.mutate(id, {
+      onSuccess: data => {
+        console.log('Joined successfully!', data);
+      },
+      onError: error => {
+        console.error('Error joining:', error);
+      },
+    });
+  };
+
+  const handleQuit = (id: string) => {
+    deleteQuitAccompanyMutation.mutate(id, {
+      onSuccess: data => {
+        console.log('Successfully quit the accompany!', data);
+      },
+      onError: error => {
+        console.error('Error quitting the accompany:', error);
+      },
+    });
+  };
+
   return (
     <>
       {isLoading && <Spinner />}
       {data && (
         <>
-          <div className="flex justify-between mt-[.5rem]">
-            <button
-              className={
-                'text-gray-300 mb-[.5rem] hover:text-white border border-gray-300 rounded-lg px-4 py-2 bg-primary'
-              }
-            >
-              이 여행자의 다른여행일정
-            </button>
-            <button
-              onClick={() => console.log('click!')}
-              className={
-                'text-gray-300 mb-[.5rem] hover:text-white border border-gray-300 rounded-lg px-4 py-2 bg-primary'
-              }
-            >
-              참여하기
-            </button>
+          <div className="flex justify-end mt-[.5rem]">
+            <div>
+              <button
+                onClick={() => accompanyId && handleJoin(accompanyId)}
+                className="text-gray-300 mb-[.5rem] hover:text-white border border-gray-300 rounded-lg px-4 py-2 bg-primary"
+              >
+                참여하기
+              </button>
+              <button
+                onClick={() => accompanyId && handleQuit(accompanyId)}
+                className="text-gray-300 mb-[.5rem] hover:text-white border border-gray-300 rounded-lg px-4 py-2 bg-primary ml-2"
+              >
+                탈퇴하기
+              </button>
+            </div>
           </div>
           <div className="flex justify-around mt-[.5rem]">
             <div className="w-[45%] rounded-lg overflow-hidden">
