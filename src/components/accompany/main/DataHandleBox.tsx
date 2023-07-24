@@ -63,6 +63,15 @@ const DataHandleBox = () => {
     const queryLocation = querystringToObject(location.search);
     if (queryLocation.accompanyLocal) setCurLocal(decodeURI(queryLocation.accompanyLocal));
     if (queryLocation.accompanyDate) setCurDate(queryLocation.accompanyDate);
+    if (queryLocation.accompanyLocal && queryLocation.accompanyDate) {
+      setUri('bylocalanddate');
+    } else if (queryLocation.accompanyDate) {
+      setUri('bydate');
+    } else if (queryLocation.accompanyLocal) {
+      setUri('bylocal');
+    } else {
+      setUri(null);
+    }
   }, []);
   return (
     <section className="my-3">
