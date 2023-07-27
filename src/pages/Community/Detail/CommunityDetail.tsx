@@ -61,7 +61,6 @@ const CommunityDetail = () => {
     getBoard();
   }, []);
 
-
   return (
     <div>
       <Header />
