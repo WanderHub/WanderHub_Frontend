@@ -3,13 +3,13 @@ import { AccompanyDataType } from '@/types/accompanyType';
 import Card from '@components/accompany/Card';
 
 type CardListProps = {
-  cards: AccompanyDataType[];
+  cards?: AccompanyDataType[];
 };
 
 const CardList = ({ cards }: CardListProps) => {
   return (
-    <ul className="grid grid-cols-4 gap-4">
-      {cards.map((card, index) => (
+    <ul className="grid grid-cols-4 gap-4 md:grid-cols-3 md:gap-3">
+      {cards?.map((card, index) => (
         <Card key={index} {...card} />
       ))}
     </ul>
