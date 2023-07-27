@@ -1,10 +1,10 @@
 import React, { useState, useCallback, ChangeEvent } from 'react';
 import { mapList } from '@/constant/MapPath';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userInfoAtom } from '@/recoil/login/userInfoAtoms';
 import Logo from '@assets/logo.png';
 import AuthAPI from '@/api/AuthAPI';
-import DeleteCheckModal from './DeleteCheckModal';
+import DeleteCheckModal from '../../../pages/MyPage/components/DeleteCheckModal';
 
 // type UserProfileType = {
 //   name: string;
@@ -19,8 +19,9 @@ const MyInfo = () => {
   //   email: '',
   // });
   const userInfo = useRecoilValue(userInfoAtom);
+  const setUserInfo = useSetRecoilState(userInfoAtom);
   const [isEditing, setIsEditing] = useState(false);
-  const [userRegion, setUserRegion] = useState('');
+  const [userRegion, setUserRegion] = useState(userInfo.local);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   //const [tempUser, setTempUser] = useState<UserProfileType>({ ...user });
   //const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -31,22 +32,25 @@ const MyInfo = () => {
 
   const patchUserData = async () => {
     const patchData = { local: userRegion };
-    await AuthAPI.patch('members', { patchData });
+    const { data } = await AuthAPI.patch('/members', patchData);
+    setUserInfo(data.data);
+    setIsEditing(false);
   };
 
-  const handleSave = useCallback(() => {
+  const handleSave = () => {
     //setUser(tempUser);
+    //console.log(userRegion);
     patchUserData();
     //setIsEditing(!isEditing);
-  }, [isEditing]);
+  };
 
-  const handleChangeRegion = useCallback(
-    (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      //setTempUser(prevTempUser => ({ ...prevTempUser, [e.target.name]: e.target.value }));
-      setUserRegion(e.target.value);
-    },
-    [userRegion],
-  );
+  // const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  //   setTempUser(prevTempUser => ({ ...prevTempUser, [e.target.name]: e.target.value }));
+  //}, [])
+
+  const handleChangeRegion = (e: ChangeEvent<HTMLSelectElement>) => {
+    setUserRegion(e.target.value);
+  };
 
   // const handleImageChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
   //   console.log(e);
@@ -98,7 +102,9 @@ const MyInfo = () => {
               className="border px-2 py-1"
             >
               {mapList.map(item => (
-                <option key={item.id}>{item.id}</option>
+                <option key={item.id} value={item.id}>
+                  {item.id}
+                </option>
               ))}
             </select>
           ) : (

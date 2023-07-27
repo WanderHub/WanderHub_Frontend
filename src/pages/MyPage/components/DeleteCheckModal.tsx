@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthAPI from '@/api/AuthAPI';
+import { useResetRecoilState } from 'recoil';
+import { userInfoAtom } from '@/recoil/login/userInfoAtoms';
 
 interface DeleteCheckModalProps {
   setIsOpenDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -8,11 +10,14 @@ interface DeleteCheckModalProps {
 
 const DeleteCheckModal = ({ setIsOpenDeleteModal }: DeleteCheckModalProps) => {
   const navigate = useNavigate();
+  const resetUserInfoAtoms = useResetRecoilState(userInfoAtom);
+
   const handleDeleteUser = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
     await AuthAPI.patch('/members/quit');
     localStorage.removeItem('accessToken');
+    resetUserInfoAtoms();
     navigate('/');
   };
 
@@ -27,7 +32,7 @@ const DeleteCheckModal = ({ setIsOpenDeleteModal }: DeleteCheckModalProps) => {
                 <svg
                   width="50"
                   height="50"
-                  className="w-12 h-12 m-auto mt-4 text-red-500"
+                  className="w-12 h-12 m-auto mt-4 text-red-600"
                   fill="currentColor"
                   viewBox="0 0 1792 1792"
                   xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,11 @@
 import Pagenation from '@components/common/Pagenation';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TableItem from './TableItem';
+import WanderHubAPI from '@/api/WanderHubAPI';
+import { BoardType } from '@/types/boardType';
+import { useRecoilValue } from 'recoil';
+import { userInfoAtom } from '@/recoil/login/userInfoAtoms';
+import { AccompanyDetailDataType } from '@/types/accompanyType';
 
 const myBoardTapList: { tabTxt: string; tabName: string }[] = [
   { tabTxt: '#나의동행글', tabName: 'myAccompany' },
@@ -9,6 +14,34 @@ const myBoardTapList: { tabTxt: string; tabName: string }[] = [
 const MyBoard = () => {
   const [curMenu, setMenu] = useState('myAccompany');
   const [curPage, setCurPage] = useState<number>(1);
+  const [myBoards, setMyBoards] = useState<BoardType[]>();
+  const [myAccompanyPost, setMyAccompanyPost] = useState<AccompanyDetailDataType[]>();
+  const userInfo = useRecoilValue(userInfoAtom);
+
+  const getMyBoards = async () => {
+    const res = await WanderHubAPI.get('/community');
+    const totalBoardNum = res.data.pageInfo.totalElements;
+    const { data } = await WanderHubAPI.get(`/community?page=0&size=${totalBoardNum}`);
+    const boardAll = data.data;
+    const newBoards = boardAll.filter((board: BoardType) => board.nickName === userInfo.nickName);
+    setMyBoards(newBoards);
+  };
+
+  const getMyAccompanyPost = async () => {
+    const { data } = await WanderHubAPI.get('/accompany');
+    const accompanyAll = data.data;
+    const newAccompany = accompanyAll.filter(
+      (post: AccompanyDetailDataType) => post.nickname === userInfo.nickName,
+    );
+    setMyAccompanyPost(newAccompany);
+    console.log(myAccompanyPost);
+  };
+
+  useEffect(() => {
+    getMyBoards();
+    getMyAccompanyPost();
+  }, []);
+
   const handlePageNation = (page: number) => {
     setCurPage(page);
   };
@@ -74,11 +107,9 @@ const MyBoard = () => {
                 </tr>
               </thead>
               <tbody>
-                {Array(10)
-                  .fill(null)
-                  .map((_, idx) => {
-                    return <TableItem key={idx} />;
-                  })}
+                {myBoards?.map((board, idx) => {
+                  return <TableItem board={board} key={idx} />;
+                })}
               </tbody>
             </table>
             <Pagenation totalPages={20} curPage={curPage} handlePageNation={handlePageNation} />
