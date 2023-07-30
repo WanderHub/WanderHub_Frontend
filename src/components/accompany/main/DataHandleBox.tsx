@@ -35,14 +35,11 @@ const DataHandleBox = () => {
         setUri(null);
         return;
     }
-    // const queryObj = { accompanyLocal: local, accompanyDate: date, page: curPage };
     const queryObj = { accompanyLocal: local, accompanyDate: date };
     const filteredQuery = Object.entries(queryObj).reduce(
       (acc, [key, value]) => (value ? { ...acc, [key]: value } : acc),
       {},
     );
-    console.log('@!!!', filteredQuery);
-
     goTo(objectToQuerystring(filteredQuery), true);
   };
 
