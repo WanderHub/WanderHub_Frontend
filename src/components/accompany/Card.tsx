@@ -35,11 +35,12 @@ const Card = (props: AccompanyDataType) => {
         <LocalImg localName={accompanyLocal} />
       </div>
       <div className="p-4 m-3 h-[155px] bg-sky-200 rounded-lg overflow-y-auto">
-        <p className="text-xl font-bold text-white ">{accompanyTitle}</p>
-        <p className="text-xs text-gray-50">{accompanyContent}</p>
+        <span className="text-gray-400">{accompanyLocal}</span>
+        <p className="text-xl font-bold text-gray-700 ">{accompanyTitle}</p>
+        <p className="text-xs  text-gray-500">{accompanyContent}</p>
         <div className="flex items-center justify-between">
-          <p className="text-white">{accompanyDate}</p>
-          <p className="text-white">
+          <p className="text-gray-600">{accompanyDate}</p>
+          <p className="text-gray-600">
             인원 : {registeredMembers}/{maxNum}
           </p>
         </div>
