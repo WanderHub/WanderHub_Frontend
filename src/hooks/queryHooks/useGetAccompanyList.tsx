@@ -29,7 +29,7 @@ const useGetAccompanyList = ({ uri, curLocal, curDate, curPage }: UseGetAccompan
       const response = await WanderHubAPI.get(
         `/accompany/${uri}${objectToQuerystring(filteredQuery)}`,
       );
-      return response.data.data;
+      return response.data;
     },
     {
       staleTime: 50000,
