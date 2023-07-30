@@ -1,4 +1,4 @@
-import WanderHubAPI from '@/api/WanderHubAPI';
+import AuthAPI from '@/api/AuthAPI';
 import { useMutation } from 'react-query';
 import { FormDataType } from '@components/accompany/post/PostDataHandleBox';
 
@@ -7,7 +7,7 @@ export interface PostAccompanyType extends FormDataType {
 }
 
 const postAccompany = async (params: PostAccompanyType) => {
-  const response = await WanderHubAPI.post('/accompany', params);
+  const response = await AuthAPI.post('/accompany', params);
   return response.data;
 };
 

@@ -109,8 +109,8 @@ const InputWithIcon = ({ id, handleChange }: InputProps) => {
         return (returnName = '부산');
       case '서울':
         return (returnName = '서울');
-      case '세종':
-        return (returnName = '세종특별자치시');
+      case '세종특별자치시':
+        return (returnName = '세종');
       case '울산':
         return (returnName = '울산');
       case '인천':
@@ -119,8 +119,8 @@ const InputWithIcon = ({ id, handleChange }: InputProps) => {
         return (returnName = '전라남도');
       case '전북':
         return (returnName = '전라북도');
-      case '제주도':
-        return (returnName = '제주특별자치도');
+      case '제주특별자치도':
+        return (returnName = '제주도');
       case '충남':
         return (returnName = '충청남도');
       case '충북':
