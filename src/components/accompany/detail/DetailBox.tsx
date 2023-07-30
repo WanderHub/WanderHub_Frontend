@@ -6,6 +6,7 @@ import useGetAccompanyDetail from '@/hooks/queryHooks/useGetAccompanyDetail';
 import Spinner from '@components/common/Spinner';
 import usePostJoinAccompany from '@/hooks/queryHooks/usePostJoinAccompany';
 import useDeleteQuitAccompany from '@/hooks/queryHooks/useDeleteQuitAccompany';
+import { AxiosError } from 'axios';
 
 const DetailBox = () => {
   const { accompanyId } = useParams();
@@ -15,24 +16,48 @@ const DetailBox = () => {
 
   const handleJoin = (id: string) => {
     joinAccompanyMutation.mutate(id, {
-      onSuccess: data => {
-        console.log('Joined successfully!', data);
-      },
-      onError: error => {
-        console.error('Error joining:', error);
+      onSuccess: () => alert('참여가 완료되었습니다.'),
+      onError: (error: unknown) => {
+        const axiosError = error as AxiosError;
+        const message = (axiosError.response?.data as { message: string }).message;
+        if (axiosError.message === 'Request failed with status code 500') {
+          alert('로그인이 필요합니다.');
+        } else {
+          handleErrorAlert(message);
+        }
       },
     });
   };
 
   const handleQuit = (id: string) => {
     deleteQuitAccompanyMutation.mutate(id, {
-      onSuccess: data => {
-        console.log('Successfully quit the accompany!', data);
-      },
-      onError: error => {
-        console.error('Error quitting the accompany:', error);
+      onSuccess: () => alert('탈퇴가 완료되었습니다.'),
+      onError: (error: unknown) => {
+        const axiosError = error as AxiosError;
+        const message = (axiosError.response?.data as { message: string }).message;
+        if (axiosError.message === 'Request failed with status code 500') {
+          alert('로그인이 필요합니다.');
+        } else {
+          handleErrorAlert(message);
+        }
       },
     });
+  };
+  const handleErrorAlert = (msg: string) => {
+    switch (msg) {
+      case 'Cannot quit as not a member':
+        alert('참여멤버가 아니면 탈퇴를 할 수 없습니다.');
+        break;
+      case 'Cannot quit as you made':
+        alert('본인의 동행글은 탈퇴 할 수 없습니다.');
+        break;
+      case 'Already joined':
+        alert('이미 참여중입니다.');
+        break;
+      case 'Max num over':
+        alert('참여인원이 꽉 찼습니다.');
+        break;
+    }
   };
 
   return (
