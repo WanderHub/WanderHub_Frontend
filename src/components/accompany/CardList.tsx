@@ -8,7 +8,7 @@ type CardListProps = {
 
 const CardList = ({ cards }: CardListProps) => {
   return (
-    <ul className="grid grid-cols-4 gap-4 md:grid-cols-3 md:gap-3">
+    <ul className="grid lg:grid-cols-4 lg:gap-4 md:grid-cols-3 md:gap-3 sm:grid-cols-2 sm:gap-2">
       {cards?.map((card, index) => (
         <Card key={index} {...card} />
       ))}
