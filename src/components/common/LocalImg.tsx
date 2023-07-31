@@ -73,7 +73,7 @@ const LocalImg = ({ localName }: LocalImgType) => {
           backgroundImage: `url(${localImg})`,
           backgroundPositionY: `${findLocalImgPosition(localName)}px`,
         }}
-        className={`w-[120px] h-[120px] bg-no-repeat`}
+        className={`rounded-full w-[120px] h-[120px] bg-no-repeat`}
       ></div>
     </div>
   );

@@ -5,6 +5,7 @@ import WanderHubAPI from '@/api/WanderHubAPI';
 import Logo from '@assets/logo.png';
 import { AccompanyDetailDataType } from '@/types/accompanyType';
 import { useNavigate } from 'react-router-dom';
+import LocalImg from '@components/common/LocalImg';
 
 const AccompanyCarousel = () => {
   const settings = {
@@ -38,11 +39,7 @@ const AccompanyCarousel = () => {
                   onClick={() => navigate(`/accompany/${e.id}`)}
                 >
                   <div className="h-22 w-full bg-gray-100 py-5 rounded-t-lg">
-                    <img
-                      src={Logo}
-                      alt={e.accompanyLocal}
-                      className="ml-4 w-16 h-16 border border-slate-300 rounded-full"
-                    />
+                    <LocalImg localName={e.accompanyLocal} />
                   </div>
                   <div className="h-56 w-full p-4 mt-2 rounded-b-xl">
                     <div className="flex">
