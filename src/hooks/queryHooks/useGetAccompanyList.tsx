@@ -3,7 +3,8 @@ import WanderHubAPI from '@/api/WanderHubAPI';
 import { objectToQuerystring } from '@/utils/commonUtil';
 
 export interface UseGetAccompanyListType {
-  uri?: 'bylocal' | 'bydate' | 'bylocalanddate' | null;
+  uri?: 'bylocal' | 'bydate' | 'bylocalanddate' | '' | null;
+  // uri?: 'bylocal' | 'bydate' | 'bylocalanddate' | null;
   curLocal?: string | null;
   curDate?: string | null;
   curPage?: number;
@@ -26,6 +27,7 @@ const useGetAccompanyList = ({ uri, curLocal, curDate, curPage }: UseGetAccompan
   const { data, isLoading, error } = useQuery(
     ['accompanyList', uri, curLocal, curDate, curPage],
     async () => {
+      if (uri === null) return;
       const response = await WanderHubAPI.get(
         `/accompany/${uri}${objectToQuerystring(filteredQuery)}`,
       );

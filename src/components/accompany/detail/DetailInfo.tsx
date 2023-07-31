@@ -17,9 +17,9 @@ const DetailInfo = (props: AccompanyDetailDataType) => {
 
   return (
     <>
-      <div className="flex items-center font-serif font-bold ">제목 : {accompanyTitle}</div>
-      <div className="flex items-center font-serif font-bold ">내용 : {accompanyContent}</div>
-      <div className="flex items-center text-sm font-serif font-bold mb-[.5rem]">
+      <div className="flex items-center font-bold ">제목 : {accompanyTitle}</div>
+      <div className="flex items-center font-bold ">내용 : {accompanyContent}</div>
+      <div className="flex items-center text-sm font-bold mb-[.5rem]">
         <div className="flex items-center w-[50%]">
           <FcLinux size={'2rem'} />
           &nbsp;작성자 : &nbsp; {nickname}
@@ -29,7 +29,7 @@ const DetailInfo = (props: AccompanyDetailDataType) => {
           &nbsp;지역 : &nbsp; {accompanyLocal}
         </div>
       </div>
-      <div className="flex items-center text-sm font-serif font-bold mb-[.5rem]">
+      <div className="flex items-center text-sm font-bold mb-[.5rem]">
         <div className="flex items-center w-[50%]">
           <FcCalendar size={'2rem'} />
           <div className="text-[.7rem]">&nbsp;날짜 : &nbsp;{accompanyDate}</div>

@@ -28,18 +28,17 @@ const MyBoard = () => {
   };
 
   const getMyAccompanyPost = async () => {
-    const { data } = await WanderHubAPI.get('/accompany');
+    const { data } = await WanderHubAPI.get('/accompany?size=100');
     const accompanyAll = data.data;
     const newAccompany = accompanyAll.filter(
       (post: AccompanyDetailDataType) => post.nickname === userInfo.nickName,
     );
     setMyAccompanyPost(newAccompany);
-    console.log(myAccompanyPost);
   };
 
   useEffect(() => {
-    if (curMenu === 'myAccompany') getmyCommunityPost();
-    else getMyAccompanyPost();
+    if (curMenu === 'myAccompany') getMyAccompanyPost();
+    else getmyCommunityPost();
   }, [curMenu]);
 
   const handlePageNation = (page: number) => {
@@ -59,7 +58,10 @@ const MyBoard = () => {
                     ? 'mx-[.5rem] px-4 py-2 text-black border-b border-black'
                     : 'mx-[.5rem] px-4 py-2 text-gray-300 hover:text-black'
                 }
-                onClick={() => setMenu(item.tabName)}
+                onClick={() => {
+                  setMenu(item.tabName);
+                  setCurPage(1);
+                }}
               >
                 {item.tabTxt}
               </button>
@@ -109,11 +111,13 @@ const MyBoard = () => {
               <tbody>
                 {curMenu === 'myAccompany' &&
                   (myAccompanyPost && myAccompanyPost.length !== 0 ? (
-                    myAccompanyPost.map((accompanyBoard, idx) => {
-                      return (
-                        <TableItem curMenu={curMenu} accompanyBoard={accompanyBoard} key={idx} />
-                      );
-                    })
+                    myAccompanyPost
+                      .slice((curPage - 1) * 10, curPage * 10)
+                      .map((accompanyBoard, idx) => {
+                        return (
+                          <TableItem curMenu={curMenu} accompanyBoard={accompanyBoard} key={idx} />
+                        );
+                      })
                   ) : (
                     <tr>
                       <td colSpan={5} className="p-8 pb-16">
@@ -137,7 +141,19 @@ const MyBoard = () => {
                   ))}
               </tbody>
             </table>
-            <Pagenation totalPages={20} curPage={curPage} handlePageNation={handlePageNation} />
+            <Pagenation
+              totalPages={
+                curMenu === 'myAccompany'
+                  ? myAccompanyPost
+                    ? Math.ceil(myAccompanyPost.length / 10)
+                    : 1
+                  : myCommunityPost
+                  ? Math.ceil(myCommunityPost.length / 10)
+                  : 1
+              }
+              curPage={curPage}
+              handlePageNation={handlePageNation}
+            />
           </div>
         </div>
       </div>
