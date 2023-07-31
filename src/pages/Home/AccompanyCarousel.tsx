@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import Title from './Title';
 import WanderHubAPI from '@/api/WanderHubAPI';
-import Logo from '@assets/logo.png';
 import { AccompanyDetailDataType } from '@/types/accompanyType';
 import { useNavigate } from 'react-router-dom';
 import LocalImg from '@components/common/LocalImg';
